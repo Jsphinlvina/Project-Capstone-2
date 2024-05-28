@@ -1,0 +1,28 @@
+extends ../layouts/master
+extends ../dashboard
+
+block sidebar
+    aside#sidebar
+        .d-flex
+            button.toggle-btn(type='button')
+                i.lni.lni-grid-alt
+            .sidebar-logo
+                a(href='') Maranatha
+        ul.sidebar-nav
+            li.sidebar-item
+                a.sidebar-link(href='')
+                    i.lni.lni-dashboard
+                    span Home
+            li.sidebar-item
+                a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#auth' aria-expanded='false' aria-controls='auth')
+                    i.lni.lni-folder
+                    span Karyawan
+                ul#auth.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
+                    li.sidebar-item
+                        a.sidebar-link(href='') Data Karyawan
+                    li.sidebar-item
+                        a.sidebar-link(href='') Cabang
+            li.sidebar-item
+                a.sidebar-link(href='')
+                    i.lni.lni-download
+                    span Barang

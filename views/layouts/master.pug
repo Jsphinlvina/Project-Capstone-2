@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+html
+
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title Pengajuan Beasiswa Internal
+        // Bootstrap
+        link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+        //Icon
+        link(rel='stylesheet', href='https://cdn.lineicons.com/4.0/lineicons.css')
+
+    body
+        div.wrapper
+            // Sidebar
+            block sidebar
+            div.main
+                // Navbar
+                block navbar
+                // Content
+                main.content.px-3.py-4
+                    div.container-fluid
+                        div.mb-3
+                            block content
+
+        // JavaScript
+        script(src='/bootstrap/dist/js/bootstrap.bundle.min.js')
+        script.
+            const hamBurger = document.querySelector('.toggle-btn');
+            hamBurger.addEventListener('click', function () {
+            document.querySelector('#sidebar').classList.toggle('expand');
+            });

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+html
+
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title Pengajuan Beasiswa Internal
+        // Bootstrap
+        link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+        // CSS
+        link(rel='stylesheet', href='/css/dashboard.css')
+        //Icon
+        link(rel='stylesheet', href='https://cdn.lineicons.com/4.0/lineicons.css')
+
+    body
+        div.wrapper
+            // Sidebar
+            aside#sidebar
+                .d-flex
+                    button.toggle-btn(type='button')
+                        i.lni.lni-grid-alt
+                    .sidebar-logo
+                        a(href='') Maranatha
+                ul.sidebar-nav
+                    li.sidebar-item
+                        a.sidebar-link(href='')
+                            i.lni.lni-dashboard
+                            span Home
+                    li.sidebar-item
+                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#auth' aria-expanded='false' aria-controls='auth')
+                            i.lni.lni-folder
+                            span Karyawan
+                        ul#auth.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
+                            li.sidebar-item
+                                a.sidebar-link(href='') Data Karyawan
+                            li.sidebar-item
+                                a.sidebar-link(href='') Cabang
+                    li.sidebar-item
+                        a.sidebar-link(href='')
+                            i.lni.lni-download
+                            span Barang
+            // End Sidebar
+
+            // Main content
+            div.main
+                // Navbar
+                nav.navbar.navbar-expand.px-4.pt-4.py-3
+                    form.d-none.d-sm-inline-block(action='#')
+                    .navbar-collapse.collapse
+                        .dropdown.position-fixed.me-3.end-0
+                            button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                | Your Name
+                            ul.dropdown-menu.dropdown-menu-end.nav-background.py-2
+                                li
+                                    a.dropdown-item(href='#')
+                                        i.lni.lni-user
+                                        span Profile
+                                li
+                                    a.dropdown-item(href='#')
+                                        i.lni.lni-exit
+                                        span Logout
+
+                // Content
+                main.content.px-3.py-4
+                    div.container-fluid
+                        div.mb-3
+                            main.content.px-3.py-4
+                                div.container-fluid
+                                    div.mb-3
+                                        h3.fw-bold.fs-4.mb-3 Admin Dashboard
+                                        div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                                            div.border-bottom.ps-3.pt-3
+                                                p.fw-semibold Info Karyawan Terbaru
+                                            div.table-responsive.small.px-3
+                                                table.table.table-striped.table-sm.mt-1
+                                                    thead
+                                                        tr
+                                                            th(scope='col') Kode Karyawan
+                                                            th(scope='col') Nama Lengkap
+                                                            th(scope='col') Kode Cabang
+                                                            th(scope='col') Posisi
+                                                            th(scope='col') Status
+                                                    tbody
+                                                        tr
+                                                            td P010
+                                                            td Josephine Alvina Luwia
+                                                            td C001
+                                                            td Manager Operasional
+                                                            td Aktif
+                                                        tr
+                                                            td P020
+                                                            td Jessica Alvina Luwia
+                                                            td C002
+                                                            td Manager Administrasi
+                                                            td Aktif
+                                                        tr
+                                                            td P021
+                                                            td Elmosius Suli
+                                                            td C001
+                                                            td Administrasi
+                                                            td Cuti
+                                                        tr
+                                                            td P011
+                                                            td Kevin Owen
+                                                            td C002
+                                                            td Operasional
+                                                            td Aktif
+                                        div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                                            div.border-bottom.ps-3.pt-3
+                                                p.fw-semibold Info Barang Terbaru
+                                            div.table-responsive.small.px-3
+                                                table.table.table-striped.table-sm.mt-1
+                                                    thead
+                                                        tr
+                                                            th(scope='col') Kode Barang
+                                                            th(scope='col') Kode Cabang
+                                                            th(scope='col') Nama Barang
+                                                            th(scope='col') Harga Jual
+                                                            th(scope='col') Stock
+                                                    tbody
+                                                        tr
+                                                            td B001
+                                                            td C001
+                                                            td Tuberose Essential Oil
+                                                            td Rp35.900
+                                                            td 10
+                                                        tr
+                                                            td B002
+                                                            td C001
+                                                            td Rosewood Essential Oil
+                                                            td Rp27.900
+                                                            td 21
+                                                        tr
+                                                            td B002
+                                                            td C002
+                                                            td Rosewood Essential Oil
+                                                            td Rp27.900
+                                                            td 5
+
+
+        // JavaScript
+        script(src='/bootstrap/dist/js/bootstrap.bundle.min.js')
+        script.
+            const hamBurger = document.querySelector('.toggle-btn');
+            hamBurger.addEventListener('click', function () {
+            document.querySelector('#sidebar').classList.toggle('expand');
+            });
