@@ -7,11 +7,11 @@ router.get('/home', (req, res) => {
     res.render('dashboard')
 })
 
-router.get('/fam-card', (req, res) => {
-
+router.get('/page01', (req, res) => {
+    res.render('beasiswa')
 })
 
-router.post('/citizen', (req, res) => {
+router.post('/page02', (req, res) => {
 
 })
 
