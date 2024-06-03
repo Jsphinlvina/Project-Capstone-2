@@ -1,4 +1,6 @@
 const express = require('express')
+const app = express()
+const path = require('path')
 
 const router = express.Router()
 router.use(express.static('public'))
@@ -7,11 +9,11 @@ router.get('/home', (req, res) => {
     res.render('dashboard')
 })
 
-router.get('/page01', (req, res) => {
-    res.render('beasiswa')
+router.get('/pengajuan', (req, res) => {
+    res.render('pengajuan/index')
 })
 
-router.post('/page02', (req, res) => {
+router.post('/riwayat', (req, res) => {
 
 })
 
