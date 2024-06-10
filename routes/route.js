@@ -21,4 +21,7 @@ router.get('/', (req, res) => {
     res.render('dashboard')
 })
 
+router.get('/jenisBeasiswa', (req, res) => {
+    res.render('master_data/jenisBeasiswa')
+})
 module.exports = router

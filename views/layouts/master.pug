@@ -35,6 +35,19 @@ html
                                 a.sidebar-link(href='/pengajuan') Pengajuan
                             li.sidebar-item
                                 a.sidebar-link(href='riwayat') Riwayat
+                    li.sidebar-item
+                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#master' aria-expanded='false' aria-controls='master')
+                            i.lni.lni-folder
+                            span Master Data
+                        ul#master.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
+                            li.sidebar-item
+                                a.sidebar-link(href='/jenisBeasiswa') Jenis Beasiswa
+                            li.sidebar-item
+                                a.sidebar-link(href='/fakultas') Fakultas
+                            li.sidebar-item
+                                a.sidebar-link(href='/programStudi') Program Studi
+                            li.sidebar-item
+                                a.sidebar-link(href='/userManagement') User Management
                     lli.sidebar-item
                         a.sidebar-link(href='')
                             i.lni.lni-download
