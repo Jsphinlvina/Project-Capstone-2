@@ -6,7 +6,19 @@ const router = express.Router()
 router.use(express.static('public'))
 
 router.get('/home', (req, res) => {
-    res.render('dashboard')
+    res.render('administrator/dashboard')
+})
+
+router.get('/home1', (req, res) => {
+    res.render('fakultas/dashboard')
+})
+
+router.get('/home2', (req, res) => {
+    res.render('program_studi/dashboard')
+})
+
+router.get('/home3', (req, res) => {
+    res.render('mahasiswa/dashboard')
 })
 
 router.get('/pengajuan', (req, res) => {

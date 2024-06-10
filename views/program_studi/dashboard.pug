@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title Dashboard Program Studi
+        // Bootstrap
+        link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+        // CSS
+        link(rel='stylesheet', href='/css/dashboard.css')
+        //Icon
+        link(rel='stylesheet', href='/icons/lineicons.css')
+    body
+        div.wrapper
+            // Sidebar
+            aside#sidebar
+                .d-flex
+                    button.toggle-btn(type='button')
+                        i.lni.lni-grid-alt
+                    .sidebar-logo
+                        a(href='') Maranatha
+                ul.sidebar-nav
+                    li.sidebar-item
+                        a.sidebar-link(href='')
+                            i.lni.lni-dashboard
+                            span Home
+                    li.sidebar-item
+                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#auth' aria-expanded='false' aria-controls='auth')
+                            i.lni.lni-folder
+                            span Beasiswa Mahasiswa
+                        ul#auth.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
+                            li.sidebar-item
+                                a.sidebar-link(href='/pengajuan') Pengajuan
+                            li.sidebar-item
+                                a.sidebar-link(href='riwayat') Riwayat
+                    li.sidebar-item
+                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#master' aria-expanded='false' aria-controls='master')
+                            i.lni.lni-folder
+                            span Master Data
+                        ul#master.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
+                            li.sidebar-item
+                                a.sidebar-link(href='/jenisBeasiswa') Jenis Beasiswa
+                            li.sidebar-item
+                                a.sidebar-link(href='/fakultas') Fakultas
+                            li.sidebar-item
+                                a.sidebar-link(href='/programStudi') Program Studi
+                            li.sidebar-item
+                                a.sidebar-link(href='/userManagement') User Management
+                    li.sidebar-item
+                        a.sidebar-link(href='')
+                            i.lni.lni-download
+                            span Hasil
+            // End Sidebar
+
+            // Main content
+            div.main
+                // Navbar
+                nav.navbar.navbar-expand.px-4.pt-4.py-3
+                    form.d-none.d-sm-inline-block(action='#')
+                    .navbar-collapse.collapse
+                        .dropdown.position-fixed.me-3.end-0
+                            button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                                | Your Name
+                            ul.dropdown-menu.dropdown-menu-end.nav-background.py-2
+                                li
+                                    a.dropdown-item(href='#')
+                                        i.lni.lni-user
+                                        span Profile
+                                li
+                                    a.dropdown-item(href='#')
+                                        i.lni.lni-exit
+                                        span Logout
+
+                // Content
+                main.content.px-3.py-4
+                    div.container-fluid
+                        h3.fw-bold.fs-4.mb-3 Beasiswa Internal Maranatha
+                        div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                            div.border-bottom.ps-3.pt-3
+                                p.fw-semibold Daftar Pengajuan Beasiswa
+                            div.table-responsive.small.px-3
+                                table.table.table-striped.table-sm.mt-1
+                                    thead
+                                        tr
+                                            th(scope='col') Kode Beasiswa
+                                            th(scope='col') Nama Mahasiswa
+                                            th(scope='col') Status
+                                            th(scope='col') Tanggal Pengajuan
+                                    tbody
+                                        tr
+                                            td B010
+                                            td John Doe
+                                            td Menunggu
+                                            td 01/06/2024
+                                        tr
+                                            td B020
+                                            td Jane Doe
+                                            td Disetujui
+                                            td 15/05/2024
+                                        tr
+                                            td B030
+                                            td Jake Doe
+                                            td Ditolak
+                                            td 20/04/2024
+
+        // JavaScript
+        script(src='/bootstrap/dist/js/bootstrap.bundle.min.js')
+        script.
+            const hamBurger = document.querySelector('.toggle-btn');
+            hamBurger.addEventListener('click', function () {
+                document.querySelector('#sidebar').classList.toggle('expand');
+            });
