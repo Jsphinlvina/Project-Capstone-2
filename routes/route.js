@@ -35,19 +35,19 @@ router.get('/', (req, res) => {
 })
 
 router.get('/jenisBeasiswa', (req, res) => {
-    res.render('master_data/jenisBeasiswa')
+    res.render('jenis_beasiswa/index')
 })
 
 router.get('/fakultas', (req, res) => {
-    res.render('master_data/fakultas')
+    res.render('fakultas/index')
 })
 
 router.get('/programStudi', (req, res) => {
-    res.render('master_data/programStudi')
+    res.render('program_studi/index')
 })
 
 router.get('/userManagement', (req, res) => {
-    res.render('master_data/userManagement')
+    res.render('users/index')
 })
 
 module.exports = router
