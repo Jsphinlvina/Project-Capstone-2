@@ -37,4 +37,17 @@ router.get('/', (req, res) => {
 router.get('/jenisBeasiswa', (req, res) => {
     res.render('master_data/jenisBeasiswa')
 })
+
+router.get('/fakultas', (req, res) => {
+    res.render('master_data/fakultas')
+})
+
+router.get('/programStudi', (req, res) => {
+    res.render('master_data/programStudi')
+})
+
+router.get('/userManagement', (req, res) => {
+    res.render('master_data/userManagement')
+})
+
 module.exports = router
