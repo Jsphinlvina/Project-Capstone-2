@@ -31,7 +31,7 @@ router.post('/riwayat', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    res.render('dashboard')
+    res.render('administrator/dashboard')
 })
 
 router.get('/jenisBeasiswa', (req, res) => {
