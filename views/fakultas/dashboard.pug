@@ -1,165 +1,93 @@
-<!DOCTYPE html>
-html
-    head
-        meta(charset="utf-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1")
-        title Dashboard Fakultas
-        // Bootstrap
-        link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
-        // CSS
-        link(rel='stylesheet', href='/css/dashboard.css')
-        //Icon
-        link(rel='stylesheet', href='/icons/lineicons.css')
+extends ../layouts/master
 
-    body
-        div.wrapper
-            // Sidebar
-            aside#sidebar
-                .d-flex
-                    button.toggle-btn(type='button')
-                        i.lni.lni-grid-alt
-                    .sidebar-logo
-                        a(href='') Maranatha
-                ul.sidebar-nav
-                    li.sidebar-item
-                        a.sidebar-link(href='')
-                            i.lni.lni-dashboard
-                            span Home
-                    li.sidebar-item
-                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#auth' aria-expanded='false' aria-controls='auth')
-                            i.lni.lni-folder
-                            span Beasiswa Mahasiswa
-                        ul#auth.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
-                            li.sidebar-item
-                                a.sidebar-link(href='/pengajuan') Pengajuan
-                            li.sidebar-item
-                                a.sidebar-link(href='riwayat') Riwayat
-                    li.sidebar-item
-                        a.sidebar-link.collapsed.has-dropdown(href='#' data-bs-toggle='collapse' data-bs-target='#master' aria-expanded='false' aria-controls='master')
-                            i.lni.lni-folder
-                            span Master Data
-                        ul#master.sidebar-dropdown.list-unstyled.collapse(data-bs-parent='#sidebar')
-                            li.sidebar-item
-                                a.sidebar-link(href='/jenisBeasiswa') Jenis Beasiswa
-                            li.sidebar-item
-                                a.sidebar-link(href='/fakultas') Fakultas
-                            li.sidebar-item
-                                a.sidebar-link(href='/programStudi') Program Studi
-                            li.sidebar-item
-                                a.sidebar-link(href='/userManagement') User Management
-                    li.sidebar-item
-                        a.sidebar-link(href='')
-                            i.lni.lni-download
-                            span Hasil
-            // End Sidebar
-
-            // Main content
-            div.main
-                // Navbar
-                nav.navbar.navbar-expand.px-4.pt-4.py-3
-                    form.d-none.d-sm-inline-block(action='#')
-                    .navbar-collapse.collapse
-                        .dropdown.position-fixed.me-3.end-0
-                            button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-                                | Your Name
-                            ul.dropdown-menu.dropdown-menu-end.nav-background.py-2
-                                li
-                                    a.dropdown-item(href='#')
-                                        i.lni.lni-user
-                                        span Profile
-                                li
-                                    a.dropdown-item(href='#')
-                                        i.lni.lni-exit
-                                        span Logout
-
-                // Content
+block content
+    main.content.px-3.py-4
+        div.container-fluid
+            div.mb-3
                 main.content.px-3.py-4
                     div.container-fluid
                         div.mb-3
-                            main.content.px-3.py-4
-                                div.container-fluid
-                                    div.mb-3
-                                        h3.fw-bold.fs-4.mb-3 Beasiswa Internal Maranatha
-                                        div.card.bg-light.shadow.border-0.rounded-3.mb-4
-                                            div.border-bottom.ps-3.pt-3
-                                                p.fw-semibold Info Beasiswa
-                                            div.table-responsive.small.px-3
-                                                table.table.table-striped.table-sm.mt-1
-                                                    thead
-                                                        tr
-                                                            th(scope='col') Kode Beasiswa
-                                                            th(scope='col') Jenis Beasiswa
-                                                            th(scope='col') Jurusan
-                                                            th(scope='col') Batas IPK
-                                                            th(scope='col') Semester
-                                                            th(scope='col') Status
-                                                    tbody
-                                                        tr
-                                                            td B010
-                                                            td Anak Pegawai
-                                                            td Teknologi Informasi
-                                                            td 3.7
-                                                            td 2
-                                                            td Aktif
-                                                        tr
-                                                            td B020
-                                                            td Prestasi
-                                                            td Sistem Informasi
-                                                            td 3.6
-                                                            td 3
-                                                            td Aktif
-                                                        tr
-                                                            td B021
-                                                            td Keadaan Ekonomi
-                                                            td Psikolog
-                                                            td 3.5
-                                                            td 5
-                                                            td aktif
-                                                        tr
-                                                            td B030
-                                                            td Rohaniawan
-                                                            td FIlsafat
-                                                            td 3.5
-                                                            td 1
-                                                            td Aktif
-                                                        tr
-                                                            td B031
-                                                            td Badan Pendukung
-                                                            td Hukum
-                                                            td 3.7
-                                                            td 1
-                                                            td Aktif
-                                        div.card.bg-light.shadow.border-0.rounded-3.mb-4
-                                            div.border-bottom.ps-3.pt-3
-                                                p.fw-semibold Info Beasiswa Terbuka
-                                            div.table-responsive.small.px-3
-                                                table.table.table-striped.table-sm.mt-1
-                                                    thead
-                                                        tr
-                                                            th(scope='col') Kode Beasiswa
-                                                            th(scope='col') Jenis Beasiswa
-                                                            th(scope='col') Jurusan
-                                                            th(scope='col') Batas IPK
-                                                            th(scope='col') Periode
-                                                    tbody
-                                                        tr
-                                                            td B010
-                                                            td Prestasi
-                                                            td Sastra Mandarin
-                                                            td 3.5
-                                                            td 28/05/2024 - 03/06/2024
-                                                        tr
-                                                            td B020
-                                                            td Rohaniawan
-                                                            td Kedokteran
-                                                            td 3.75
-                                                            td 28/05/2024 - 03/06/2024
-                                                        tr
-                                                            td B030
-                                                            td Keadaan Ekonomi
-                                                            td Teknik Industri
-                                                            td 3.6
-                                                            td 28/05/2024 - 03/06/2024
+                            h3.fw-bold.fs-4.mb-3 Beasiswa Internal Maranatha
+                            div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                                div.border-bottom.ps-3.pt-3
+                                    p.fw-semibold Info Beasiswa
+                                div.table-responsive.small.px-3
+                                    table.table.table-striped.table-sm.mt-1
+                                        thead
+                                            tr
+                                                th(scope='col') Kode Beasiswa
+                                                th(scope='col') Jenis Beasiswa
+                                                th(scope='col') Jurusan
+                                                th(scope='col') Batas IPK
+                                                th(scope='col') Semester
+                                                th(scope='col') Status
+                                        tbody
+                                            tr
+                                                td B010
+                                                td Anak Pegawai
+                                                td Teknologi Informasi
+                                                td 3.7
+                                                td 2
+                                                td Aktif
+                                            tr
+                                                td B020
+                                                td Prestasi
+                                                td Sistem Informasi
+                                                td 3.6
+                                                td 3
+                                                td Aktif
+                                            tr
+                                                td B021
+                                                td Keadaan Ekonomi
+                                                td Psikolog
+                                                td 3.5
+                                                td 5
+                                                td aktif
+                                            tr
+                                                td B030
+                                                td Rohaniawan
+                                                td FIlsafat
+                                                td 3.5
+                                                td 1
+                                                td Aktif
+                                            tr
+                                                td B031
+                                                td Badan Pendukung
+                                                td Hukum
+                                                td 3.7
+                                                td 1
+                                                td Aktif
+                            div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                                div.border-bottom.ps-3.pt-3
+                                    p.fw-semibold Info Beasiswa Terbuka
+                                div.table-responsive.small.px-3
+                                    table.table.table-striped.table-sm.mt-1
+                                        thead
+                                            tr
+                                                th(scope='col') Kode Beasiswa
+                                                th(scope='col') Jenis Beasiswa
+                                                th(scope='col') Jurusan
+                                                th(scope='col') Batas IPK
+                                                th(scope='col') Periode
+                                        tbody
+                                            tr
+                                                td B010
+                                                td Prestasi
+                                                td Sastra Mandarin
+                                                td 3.5
+                                                td 28/05/2024 - 03/06/2024
+                                            tr
+                                                td B020
+                                                td Rohaniawan
+                                                td Kedokteran
+                                                td 3.75
+                                                td 28/05/2024 - 03/06/2024
+                                            tr
+                                                td B030
+                                                td Keadaan Ekonomi
+                                                td Teknik Industri
+                                                td 3.6
+                                                td 28/05/2024 - 03/06/2024
 
 
         // JavaScript

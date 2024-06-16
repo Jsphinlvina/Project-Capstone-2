@@ -5,31 +5,39 @@ block content
         div.container-fluid
             div.mb-3
                 div.d-flex.justify-content-between.mb-3
-                    h3.fw-bold.fs-4.mb-3 User
-                    button.btn.btn-success.px-4(data-bs-toggle="modal" data-bs-target="#addUserModal")
+                    h3.fw-bold.fs-4.mb-3 Mahasiswa
+                    button.btn.btn-success.px-4(data-bs-toggle="modal" data-bs-target="#addMahasiswaModal")
                         strong + Add
                 div.card.bg-light.shadow.border-0.rounded-3.mb-4
                     div.border-bottom.ps-3.pt-3
-                        p.fw-semibold List of User
+                        p.fw-semibold List of Mahasiswa
                     div.table-responsive.small.px-3
                         table.table.table-striped.table-sm.mt-1
                             thead
                                 tr
-                                    th(scope='col') Kode
-                                    th(scope='col') Email
+                                    th(scope='col') NRP
                                     th(scope='col') Nama
-                                    th(scope='col') Role
+                                    th(scope='col') Fakultas
+                                    th(scope='col') Program Studi
+                                    th(scope='col') IPK
+                                    th(scope='col') Angkatan
+                                    th(scope='col') No tlp
+                                    th(scope='col') Alamat
                                     th(scope='col') Status
                                     th.text-center(scope='col') Action
                             tbody
                                 tr
-                                    td B010
-                                    td admin1@maranatha.ac.id
-                                    td Jessica
-                                    td Admin
+                                    td 2272004
+                                    td Jessica Luwia
+                                    td Teknologi Informasi
+                                    td Teknik Informatika
+                                    td 3.99
+                                    td 2022
+                                    td 012345678
+                                    td Jl. Rahayu
                                     td Aktif
                                     td.text-center
-                                        button.btn.btn-warning(data-bs-toggle="modal" data-bs-target="#editUserModal")
+                                        button.btn.btn-warning(data-bs-toggle="modal" data-bs-target="#editMahasiswaModal")
                                             svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
                                                 path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
                                                 path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
@@ -38,26 +46,15 @@ block content
                                             svg.bi.bi-trash-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
                                                 path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
                                 tr
-                                    td B020
-                                    td 2272900@maranatha.ac.id
-                                    td Josephine
-                                    td Mahasiswa
+                                    td 2352001
+                                    td Kekey
+                                    td Bisnis
+                                    td Akuntansi
+                                    td 3.86
+                                    td 2023
+                                    td 09831734
+                                    td Jl. Sumantri
                                     td Aktif
-                                    td.text-center
-                                        button.btn.btn-warning
-                                            svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                                                path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
-                                                path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
-
-                                        button.btn.btn-danger.mx-2
-                                            svg.bi.bi-trash-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                                                path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
-                                tr
-                                    td B010
-                                    td IT@maranatha.ac.id
-                                    td Joshua
-                                    td Fakultas
-                                    td Non-aktif
                                     td.text-center
                                         button.btn.btn-warning
                                             svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
@@ -69,30 +66,53 @@ block content
                                                 path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
 
             //ADD MODAL
-            div#addUserModal.modal.fade(tabindex='-1' aria-labelledby='addUserLabel' aria-hidden='true')
+            div#addMahasiswaModal.modal.fade(tabindex='-1' aria-labelledby='addMahasiswaLabel' aria-hidden='true')
                 div.modal-dialog
                     div.modal-content
                         div.modal-header
-                            h1#addUserModalLabel.modal-title.fs-5 Add New User
+                            h1#addJenisBeasiswaModalLabel.modal-title.fs-5 Add New Mahasiswa
                             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
                         div.modal-body
                             div.mb-3.row
-                                label.col-sm-4.col-form-label Email
+                                label.col-sm-4.col-form-label NRP
                                 div.col-sm-8
-                                    input.form-control(type='text' placeholder='Enter email name')
+                                    input.form-control(type='text' placeholder='Enter nrp')
                             div.mb-3.row
                                 label.col-sm-4.col-form-label Nama
                                 div.col-sm-8
                                     input.form-control(type='text' placeholder='Enter name')
                             div.mb-3.row
-                                label.col-sm-4.col-form-label Role
+                                label.col-sm-4.col-form-label Nama Fakultas
                                 div.col-sm-8
                                     select.form-select(aria-label='Default select example')
-                                        option(selected='') Select role
-                                        option(value='admin') Admin
-                                        option(value='mahasiswa') Mahasiswa
-                                        option(value='fakultas') Fakultas
-                                        option(value='programStudi') Program Studi
+                                        option(selected='') Select fakultas
+                                        option(value='teknologiInformasi') Teknologi Informasi
+                                        option(value='bisnis') Bisnis
+                                        option(value='kedokteranGigi') Kedokteran Gigi
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Nama Program Studi
+                                div.col-sm-8
+                                    select.form-select(aria-label='Default select example')
+                                        option(selected='') Select program studi
+                                        option(value='teknikInformatika') Teknik Informatika
+                                        option(value='akuntansi') Akuntansi
+                                        option(value='kedokteranGigi') Kedokteran Gigi
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label IPK
+                                div.col-sm-8
+                                    input.form-control(type='number' step=".01" placeholder='Enter ipk')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Angkatan
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter angkatan')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label No tlp
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter no tlp')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Alamat
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter alamat')
                             div.mb-3.row
                                 label.col-sm-4.col-form-label Status
                                 div.col-sm-8
@@ -106,30 +126,53 @@ block content
                             button.btn.btn-primary(type='button') Submit
 
             //EDIT MODAL
-            div#editUserModal.modal.fade(tabindex='-1' aria-labelledby='addUserLabel' aria-hidden='true')
+            div#editMahasiswaModal.modal.fade(tabindex='-1' aria-labelledby='editMahasiswaLabel' aria-hidden='true')
                 div.modal-dialog
                     div.modal-content
                         div.modal-header
-                            h1#editUserodalLabel.modal-title.fs-5 Edit User
+                            h1#editJenisBeasiswaModalLabel.modal-title.fs-5 Edit Mahasiswa
                             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
                         div.modal-body
                             div.mb-3.row
-                                label.col-sm-4.col-form-label Email
+                                label.col-sm-4.col-form-label NRP
                                 div.col-sm-8
-                                    input.form-control(type='text' placeholder='Enter email name')
+                                    input.form-control(type='text' placeholder='Enter nrp')
                             div.mb-3.row
                                 label.col-sm-4.col-form-label Nama
                                 div.col-sm-8
                                     input.form-control(type='text' placeholder='Enter name')
                             div.mb-3.row
-                                label.col-sm-4.col-form-label Role
+                                label.col-sm-4.col-form-label Nama Fakultas
                                 div.col-sm-8
                                     select.form-select(aria-label='Default select example')
-                                        option(selected='') Select role
-                                        option(value='admin') Admin
-                                        option(value='mahasiswa') Mahasiswa
-                                        option(value='fakultas') Fakultas
-                                        option(value='programStudi') Program Studi
+                                        option(selected='') Select fakultas
+                                        option(value='teknologiInformasi') Teknologi Informasi
+                                        option(value='bisnis') Bisnis
+                                        option(value='kedokteranGigi') Kedokteran Gigi
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Nama Program Studi
+                                div.col-sm-8
+                                    select.form-select(aria-label='Default select example')
+                                        option(selected='') Select program studi
+                                        option(value='teknikInformatika') Teknik Informatika
+                                        option(value='akuntansi') Akuntansi
+                                        option(value='kedokteranGigi') Kedokteran Gigi
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label IPK
+                                div.col-sm-8
+                                    input.form-control(type='number' step=".01" placeholder='Enter ipk')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Angkatan
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter angkatan')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label No tlp
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter no tlp')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Alamat
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter alamat')
                             div.mb-3.row
                                 label.col-sm-4.col-form-label Status
                                 div.col-sm-8

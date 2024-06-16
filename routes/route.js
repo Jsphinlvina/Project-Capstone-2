@@ -26,8 +26,8 @@ router.get('/pengajuan', (req, res) => {
     res.render('pengajuan/index')
 })
 
-router.post('/riwayat', (req, res) => {
-
+router.get('/riwayat', (req, res) => {
+    res.render('pengajuan/riwayat')
 })
 
 router.get('/', (req, res) => {
@@ -49,5 +49,18 @@ router.get('/programStudi', (req, res) => {
 router.get('/userManagement', (req, res) => {
     res.render('users/index')
 })
+
+router.get('/mahasiswa', (req, res) => {
+    res.render('mahasiswa/index')
+})
+
+router.get('/approvalFakultas', (req, res) => {
+    res.render('fakultas/approval')
+})
+
+router.get('/approvalProgramStudi', (req, res) => {
+    res.render('program_studi/approval')
+})
+
 
 module.exports = router

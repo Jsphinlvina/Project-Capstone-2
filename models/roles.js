@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     flag: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'roles',
+    modelName: 'users',
   });
   return roles;
 };
