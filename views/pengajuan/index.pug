@@ -87,31 +87,31 @@ block content
                         div.card-header.text-white(style="background-color:#113946")
                             h5 Upload Kelengkapan
                         div.card-body
-                            form(action='/submit-upload' method='post')
+                            form(action='/submit-upload' method='post' enctype='multipart/form-data')
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='surat_rekomendasi') Surat Rekomendasi Dosen :
                                     div.col-sm-8
-                                        input#surat_rekomendasi.form-control(type='text' name='surat_rekomendasi' placeholder='Masukkan link atau keterangan surat rekomendasi' required)
+                                        input#surat_rekomendasi.form-control(type='file' name='surat_rekomendasi' required)
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='pkm') Surat Pernyataan Bersedia Membuat PKM :
                                     div.col-sm-8
-                                        input#pkm.form-control(type='text' name='pkm' placeholder='Masukkan link atau keterangan surat pernyataan bersedia membuat PKM' required)
+                                        input#pkm.form-control(type='file' name='pkm' required)
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='tidak_terima_beasiswa') Surat Pernyataan Tidak Menerima Beasiswa Lain :
                                     div.col-sm-8
-                                        input#tidak_terima_beasiswa.form-control(type='text' name='tidak_terima_beasiswa' placeholder='Masukkan link atau keterangan surat pernyataan tidak menerima beasiswa lain' required)
+                                        input#tidak_terima_beasiswa.form-control(type='file' name='tidak_terima_beasiswa' required)
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='dkbs') DKBS Baru :
                                     div.col-sm-8
-                                        input#dkbs.form-control(type='text' name='dkbs' placeholder='Masukkan link atau keterangan DKBS baru' required)
+                                        input#dkbs.form-control(type='file' name='dkbs' required)
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='transkrip') Transkrip Nilai :
                                     div.col-sm-8
-                                        input#transkrip.form-control(type='text' name='transkrip' placeholder='Masukkan link atau keterangan transkrip nilai' required)
+                                        input#transkrip.form-control(type='file' name='transkrip' required)
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='lampiran') Lampiran Lainnya (Tidak Wajib) :
                                     div.col-sm-8
-                                        input#lampiran.form-control(type='text' name='lampiran' placeholder='Masukkan link atau keterangan lampiran lainnya')
+                                        input#lampiran.form-control(type='file' name='lampiran')
                                 div.d-flex.justify-content-between
                                     button.btn.btn-secondary(type='button' onclick='showPreviousStep()') Sebelumnya
                                     button.btn.btn-primary(type='button' onclick='showNextStep2()') Selanjutnya

@@ -35,10 +35,17 @@ router.get('/home3', (req, res) => {
     res.render('mahasiswa/dashboard')
 })
 
-router.get('/man', (req, res) => {
-    res.render('management /management')
+router.get('/applicants', (req, res) => {
+    res.render('program_studi/applicants')
 })
 
+router.get('/management', (req, res) => {
+    res.render('fakultas/management')
+})
+
+router.get('/applicants01', (req, res) => {
+    res.render('fakultas/applicants')
+})
 
 router.get('/pengajuan', (req, res) => {
     res.render('pengajuan/index')

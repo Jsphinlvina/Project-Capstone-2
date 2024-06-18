@@ -1,0 +1,142 @@
+extends ../layouts/master
+
+block content
+    main.content.px-3.py-4
+        div.container-fluid
+            div.mb-3
+                h3.fw-bold.fs-4.mb-3 Daftar Mahasiswa yang Mengajukan Beasiswa per Periode
+                // Period selection
+                div.mb-3
+                    form#periodForm(action='/program_studi/period', method='GET')
+                        div.row
+                            div.col-md-6
+                                label(for='periodSelect') Pilih Periode:
+                                select#periodSelect.form-select(name='period', onchange='document.getElementById("periodForm").submit();')
+                                    option(value='', disabled, selected) -- Pilih Periode --
+                                    option(value='2023-01') Januari 2023
+                                    option(value='2023-02') Februari 2023
+                                    // Add more periods as necessary
+                div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                    div.border-bottom.ps-3.pt-3
+                        p.fw-semibold List of Applicants
+                    div.table-responsive.small.px-3
+                        table.table.table-striped.table-sm.mt-1
+                            thead
+                                tr
+                                    th(scope='col') NRP
+                                    th(scope='col') Nama
+                                    th(scope='col') Program Studi
+                                    th(scope='col') Scholarship Name
+                                    th(scope='col') Status
+                                    th.text-center(scope='col') Action
+                            tbody
+                                // Loop through applications dynamically
+                                each application in applications
+                                    tr
+                                        td= application.nrp
+                                        td= application.nama
+                                        td= application.program_studi
+                                        td= application.scholarship_name
+                                        td= application.status
+                                        td.text-center
+                                            button.btn.btn-success(data-bs-toggle="modal" data-bs-target="#approveModal-#{application.id}")
+                                                svg.bi.bi-check-circle(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                    path(d='M16 8A8 8 0 1 0 8 16A8 8 0 0 0 16 8zM6.5 11.5l-3-3L4 7l2.5 2.5L12 4l1.5 1.5l-7 7z')
+                                            button.btn.btn-danger.mx-2(data-bs-toggle="modal" data-bs-target="#rejectModal-#{application.id}")
+                                                svg.bi.bi-x-circle(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                    path(d='M16 8A8 8 0 1 0 8 16A8 8 0 0 0 16 8zM11.354 4.646a.5.5 0 0 1 0 .708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 .708-.708L8 7.293l2.646-2.647a.5.5 0 0 1 .708 0z')
+                                            //APPROVE MODAL
+                                            div#approveModal-#{application.id}.modal.fade(tabindex='-1' aria-labelledby='approveLabel' aria-hidden='true')
+                                                div.modal-dialog
+                                                    div.modal-content
+                                                        div.modal-header
+                                                            h1#approveModalLabel.modal-title.fs-5 Persetujuan Aplikasi Beasiswa
+                                                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                                                        div.modal-body
+                                                            p Apakah Anda yakin ingin menyetujui aplikasi beasiswa ini?
+                                                        div.modal-footer
+                                                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                                                            button.btn.btn-success(type='button') Approve
+                                            // REJECT MODAL
+                                            div#rejectModal-#{application.id}.modal.fade(tabindex='-1' aria-labelledby='rejectLabel' aria-hidden='true')
+                                                div.modal-dialog
+                                                    div.modal-content
+                                                        div.modal-header
+                                                            h1#rejectModalLabel.modal-title.fs-5 Hapus Aplikasi Beasiswa
+                                                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                                                        div.modal-body
+                                                            p Apakah Anda yakin ingin menolak aplikasi beasiswa ini?
+                                                        div.modal-footer
+                                                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                                                            button.btn.btn-danger(type='button') Delete
+extends ../layouts/master
+
+block content
+    main.content.px-3.py-4
+        div.container-fluid
+            div.mb-3
+                h3.fw-bold.fs-4.mb-3 Daftar Mahasiswa yang Mengajukan Beasiswa per Periode
+                // Period selection
+                div.mb-3
+                    form#periodForm(action='/program_studi/period', method='GET')
+                        div.row
+                            div.col-md-6
+                                label(for='periodSelect') Pilih Periode:
+                                select#periodSelect.form-select(name='period', onchange='document.getElementById("periodForm").submit();')
+                                    option(value='', disabled, selected) -- Pilih Periode --
+                                    option(value='2023-01') Januari 2023
+                                    option(value='2023-02') Februari 2023
+                                    // Add more periods as necessary
+                div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                    div.border-bottom.ps-3.pt-3
+                        p.fw-semibold List of Applicants
+                    div.table-responsive.small.px-3
+                        table.table.table-striped.table-sm.mt-1
+                            thead
+                                tr
+                                    th(scope='col') NRP
+                                    th(scope='col') Nama
+                                    th(scope='col') Program Studi
+                                    th(scope='col') Scholarship Name
+                                    th(scope='col') Status
+                                    th.text-center(scope='col') Action
+                            tbody
+                                // Loop through applications dynamically
+                                each application in applications
+                                    tr
+                                        td= application.nrp
+                                        td= application.nama
+                                        td= application.program_studi
+                                        td= application.scholarship_name
+                                        td= application.status
+                                        td.text-center
+                                            button.btn.btn-success(data-bs-toggle="modal" data-bs-target="#approveModal-#{application.id}")
+                                                svg.bi.bi-check-circle(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                    path(d='M16 8A8 8 0 1 0 8 16A8 8 0 0 0 16 8zM6.5 11.5l-3-3L4 7l2.5 2.5L12 4l1.5 1.5l-7 7z')
+                                            button.btn.btn-danger.mx-2(data-bs-toggle="modal" data-bs-target="#rejectModal-#{application.id}")
+                                                svg.bi.bi-x-circle(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                    path(d='M16 8A8 8 0 1 0 8 16A8 8 0 0 0 16 8zM11.354 4.646a.5.5 0 0 1 0 .708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 .708-.708L8 7.293l2.646-2.647a.5.5 0 0 1 .708 0z')
+                                            //APPROVE MODAL
+                                            div#approveModal-#{application.id}.modal.fade(tabindex='-1' aria-labelledby='approveLabel' aria-hidden='true')
+                                                div.modal-dialog
+                                                    div.modal-content
+                                                        div.modal-header
+                                                            h1#approveModalLabel.modal-title.fs-5 Persetujuan Aplikasi Beasiswa
+                                                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                                                        div.modal-body
+                                                            p Apakah Anda yakin ingin menyetujui aplikasi beasiswa ini?
+                                                        div.modal-footer
+                                                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                                                            button.btn.btn-success(type='button') Approve
+                                            // REJECT MODAL
+                                            div#rejectModal-#{application.id}.modal.fade(tabindex='-1' aria-labelledby='rejectLabel' aria-hidden='true')
+                                                div.modal-dialog
+                                                    div.modal-content
+                                                        div.modal-header
+                                                            h1#rejectModalLabel.modal-title.fs-5 Hapus Aplikasi Beasiswa
+                                                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                                                        div.modal-body
+                                                            p Apakah Anda yakin ingin menolak aplikasi beasiswa ini?
+                                                        div.modal-footer
+                                                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                                                            button.btn.btn-danger(type='button') Delete
