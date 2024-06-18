@@ -5,6 +5,20 @@ const path = require('path')
 const router = express.Router()
 router.use(express.static('public'))
 
+router.get('/dashboard', function(req, res) {
+    if (req.user.role === 'administrator') {
+        res.render('administrator/dashboard');
+    } else if (req.user.role === 'fakultas') {
+        res.render('fakultas/dashboard');
+    } else if (req.user.role === 'program_studi') {
+        res.render('program_studi/dashboard');
+    } else if (req.user.role === 'mahasiswa') {
+        res.resder('mahasiswa/dashboard');
+    } else {
+        res.redirect('/login');
+    }
+})
+
 router.get('/home', (req, res) => {
     res.render('administrator/dashboard')
 })
@@ -19,6 +33,10 @@ router.get('/home2', (req, res) => {
 
 router.get('/home3', (req, res) => {
     res.render('mahasiswa/dashboard')
+})
+
+router.get('/man', (req, res) => {
+    res.render('management/management')
 })
 
 
