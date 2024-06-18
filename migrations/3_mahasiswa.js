@@ -6,19 +6,17 @@ exports.up = function (knex) {
     return knex.schema.hasTable('mahasiswa').then(function (exists) {
         if (!exists) {
             return knex.schema.createTable('mahasiswa', function (table) {
-                table.increments('id').primary()
-                table.string('user_nrp', 7).unique()
-                table.string('user_name', 50).notNullable()
-                table.string('fakultas_id', 5).notNullable()
+                table.string('id', 7).primary()
+                table.string('name', 50).notNullable()
+                table.string('email').notNullable()
+                table.string('password').notNullable()
                 table.string('program_studi_id', 5).notNullable()
+                table.string('role_id', 1).notNullable()
                 table.float('ipk').notNullable()
                 table.string('angkatan', 4).notNullable()
                 table.string('no_tlp', 20).notNullable()
                 table.string('alamat', 50).notNullable()
-                table.boolean('status').notNullable().defaultTo(true)
-                table.foreign('user_nrp').references('nrp').inTable('users').onUpdate('CASCADE').onDelete('RESTRICT')
-                table.foreign('user_name').references('name').inTable('users').onUpdate('CASCADE').onDelete('RESTRICT')
-                table.foreign('fakulas_id').references('id').inTable('fakultas').onUpdate('CASCADE').onDelete('RESTRICT')
+                table.foreign('role_id').references('id').inTable('roles').onUpdate('CASCADE').onDelete('RESTRICT')
                 table.foreign('program_studi_id').references('id').inTable('program_studi').onUpdate('CASCADE').onDelete('RESTRICT')
             })
         }
