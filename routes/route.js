@@ -36,7 +36,7 @@ router.get('/home3', (req, res) => {
 })
 
 router.get('/man', (req, res) => {
-    res.render('management/management')
+    res.render('management /management')
 })
 
 
