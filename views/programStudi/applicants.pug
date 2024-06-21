@@ -78,11 +78,11 @@ block content
                 h3.fw-bold.fs-4.mb-3 Daftar Mahasiswa yang Mengajukan Beasiswa per Periode
                 // Period selection
                 div.mb-3
-                    form#periodForm(action='/programStudi/period', method='GET')
+                    form#periodForm1(action='/programStudi/period', method='GET')
                         div.row
                             div.col-md-6
                                 label(for='periodSelect') Pilih Periode:
-                                select#periodSelect.form-select(name='period', onchange='document.getElementById("periodForm").submit();')
+                                select#periodSelect1.form-select(name='period', onchange='document.getElementById("periodForm").submit();')
                                     option(value='', disabled, selected) -- Pilih Periode --
                                     option(value='2023-01') Januari 2023
                                     option(value='2023-02') Februari 2023
