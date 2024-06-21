@@ -9,13 +9,23 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
+const roleController = require('../controller/RoleController')
+
+// Role
+router.get('/role/delete/:id', roleController.destroy)
+router.get('/role/edit/:id', roleController.edit)
+router.post('/role/update', roleController.update)
+router.post('/role/store', roleController.store)
+router.get('/role/create', roleController.create)
+router.get('/role', roleController.index)
+
 router.get('/dashboard', function(req, res) {
     if (req.user.role === 'administrator') {
         res.render('administrator/dashboard');
     } else if (req.user.role === 'fakultas') {
         res.render('fakultas/dashboard');
     } else if (req.user.role === 'program_studi') {
-        res.render('program_studi/dashboard');
+        res.render('programStudi/dashboard');
     } else if (req.user.role === 'mahasiswa') {
         res.render('mahasiswa/dashboard');
     } else {
@@ -32,7 +42,7 @@ router.get('/home1', (req, res) => {
 })
 
 router.get('/home2', (req, res) => {
-    res.render('program_studi/dashboard')
+    res.render('programStudi/dashboard')
 })
 
 router.get('/home3', (req, res) => {
@@ -40,7 +50,7 @@ router.get('/home3', (req, res) => {
 })
 
 router.get('/applicants', (req, res) => {
-    res.render('program_studi/applicants')
+    res.render('programStudi/applicants')
 })
 
 router.get('/management', (req, res) => {
@@ -72,7 +82,7 @@ router.get('/fakultas', (req, res) => {
 })
 
 router.get('/programStudi', (req, res) => {
-    res.render('program_studi/index')
+    res.render('programStudi/index')
 })
 
 router.get('/userManagement', (req, res) => {
@@ -92,7 +102,7 @@ router.get('/approvalFakultas', (req, res) => {
 })
 
 router.get('/approvalProgramStudi', (req, res) => {
-    res.render('program_studi/approval')
+    res.render('programStudi/approval')
 })
 
 

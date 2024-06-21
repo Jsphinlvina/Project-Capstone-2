@@ -169,7 +169,7 @@ a.sidebar-link:hover {
 .navbar {
     background-color: #EAD7BB;
     box-shadow: 0 0 2rem 0 rgba(33, 37, 41, 0.1);
-    z-index: 1100;
+    /*z-index: 1100;*/
     position: sticky !important;
     top: 0;
 }

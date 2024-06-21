@@ -1,0 +1,30 @@
+extends ../layouts/master
+
+block content
+    main.content.px-3.py-4
+        div.container-fluid
+            div.mb-3
+                div.d-flex.justify-content-between.mb-3
+                    h3.fw-bold.fs-4.mb-3 Edit Role
+                    a.btn.btn-warning.px-4.pt-2(href='javascript:history.back()')
+                        strong Back
+                div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                    form.p-5(method='post', action='/role/update')
+                        div.ms-4.mb-3.input-group
+                            div.col-4.pe-3
+                                label.form-label.fw-semibold(for="id") ID
+                                input.form-control(type="text",
+                                    name="id",
+                                    id="id",
+                                    readonly
+                                    value=`${role.id}`)
+                            div.col-4.ps-3
+                                label.form-label.fw-semibold(for="name") Name
+                                input.form-control(type="text",
+                                        name="name",
+                                        id="name",
+                                        required, autofocus,
+                                        maxlength=20,
+                                        value=`${role.name}`)
+                        div.d-flex
+                            button.btn.btn-success.ms-auto(type="submit") Edit Role
