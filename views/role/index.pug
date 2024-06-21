@@ -1,0 +1,74 @@
+extends ../layouts/master
+
+block content
+    main.content.px-3.py-4
+        div.container-fluid
+            div.mb-3
+                div.d-flex.justify-content-between.mb-3
+                    h3.fw-bold.fs-4.mb-3 Role
+                    button.btn.btn-success.px-4(data-bs-toggle="modal" data-bs-target="#addUserModal")
+                        strong + Add
+                div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                    div.border-bottom.ps-3.pt-3
+                        p.fw-semibold List of Role
+                    div.table-responsive.small.px-3
+                        table.table.table-striped.table-sm.mt-1
+                            thead
+                                tr
+                                    th(scope='col') Kode
+                                    th(scope='col') Nama
+                                    th.text-center(scope='col') Action
+                            tbody
+                                tr
+                                    td R010
+                                    td Admin
+                                    td.text-center
+                                        button.btn.btn-warning(data-bs-toggle="modal" data-bs-target="#editUserModal")
+                                            svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
+                                                path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
+
+                                        button.btn.btn-danger.mx-2
+                                            svg.bi.bi-trash-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
+                               
+            //ADD MODAL
+            div#addUserModal.modal.fade(tabindex='-1' aria-labelledby='addUserLabel' aria-hidden='true')
+                div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            h1#addUserModalLabel.modal-title.fs-5 Add New Role
+                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        div.modal-body
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Kode
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter email name')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Nama
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter name')
+                        div.modal-footer
+                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                            button.btn.btn-primary(type='button') Submit
+
+            //EDIT MODAL
+            div#editUserModal.modal.fade(tabindex='-1' aria-labelledby='addUserLabel' aria-hidden='true')
+                div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            h1#editUserodalLabel.modal-title.fs-5 Edit Role
+                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        div.modal-body
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Kode
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter email name')
+                            div.mb-3.row
+                                label.col-sm-4.col-form-label Nama
+                                div.col-sm-8
+                                    input.form-control(type='text' placeholder='Enter name')
+
+                        div.modal-footer
+                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                            button.btn.btn-primary(type='button') Edit

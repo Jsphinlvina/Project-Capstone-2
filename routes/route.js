@@ -5,6 +5,10 @@ const path = require('path')
 const router = express.Router()
 router.use(express.static('public'))
 
+router.get('/login', (req, res) => {
+    res.render('login')
+})
+
 router.get('/dashboard', function(req, res) {
     if (req.user.role === 'administrator') {
         res.render('administrator/dashboard');
@@ -13,7 +17,7 @@ router.get('/dashboard', function(req, res) {
     } else if (req.user.role === 'program_studi') {
         res.render('program_studi/dashboard');
     } else if (req.user.role === 'mahasiswa') {
-        res.resder('mahasiswa/dashboard');
+        res.render('mahasiswa/dashboard');
     } else {
         res.redirect('/login');
     }
@@ -75,6 +79,10 @@ router.get('/userManagement', (req, res) => {
     res.render('users/index')
 })
 
+router.get('/roleManagement', (req, res) => {
+    res.render('role/index')
+})
+
 router.get('/mahasiswa', (req, res) => {
     res.render('mahasiswa/index')
 })
@@ -86,6 +94,7 @@ router.get('/approvalFakultas', (req, res) => {
 router.get('/approvalProgramStudi', (req, res) => {
     res.render('program_studi/approval')
 })
+
 
 
 module.exports = router
