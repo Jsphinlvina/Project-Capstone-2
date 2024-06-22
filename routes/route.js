@@ -19,6 +19,7 @@ router.post('/role/store', roleController.store)
 router.get('/role/create', roleController.create)
 router.get('/role', roleController.index)
 
+
 router.get('/dashboard', function(req, res) {
     if (req.user.role === 'administrator') {
         res.render('administrator/dashboard');
@@ -105,6 +106,9 @@ router.get('/approvalProgramStudi', (req, res) => {
     res.render('programStudi/approval')
 })
 
+router.get('/createPS', (req, res) => {
+    res.render('mahasiswa/create')
+})
 
 
 module.exports = router
