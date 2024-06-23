@@ -9,7 +9,11 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
+// Controller
 const roleController = require('../controller/RoleController')
+const fakultasController = require('../controller/FakultasController')
+const programStudiController = require('../controller/ProgramStudiController')
+const jenisBeasiswaController = require('../controller/JenisBeasiswaController')
 
 // Role
 router.get('/role/delete/:id', roleController.destroy)
@@ -19,20 +23,46 @@ router.post('/role/store', roleController.store)
 router.get('/role/create', roleController.create)
 router.get('/role', roleController.index)
 
+// Fakultas
+router.get('/fakultas/delete/:id', fakultasController.destroy)
+router.get('/fakultas/edit/:id', fakultasController.edit)
+router.post('/fakultas/update', fakultasController.update)
+router.post('/fakultas/store', fakultasController.store)
+router.get('/fakultas/create', fakultasController.create)
+router.get('/fakultas', fakultasController.index)
 
-router.get('/dashboard', function(req, res) {
-    if (req.user.role === 'administrator') {
-        res.render('administrator/dashboard');
-    } else if (req.user.role === 'fakultas') {
-        res.render('fakultas/dashboard');
-    } else if (req.user.role === 'program_studi') {
-        res.render('programStudi/dashboard');
-    } else if (req.user.role === 'mahasiswa') {
-        res.render('mahasiswa/dashboard');
-    } else {
-        res.redirect('/login');
-    }
-})
+// Program Studi
+router.get('/programStudi/delete/:id', programStudiController.destroy)
+router.get('/programStudi/edit/:id', programStudiController.edit)
+router.post('/programStudi/update', programStudiController.update)
+router.post('/programStudi/store', programStudiController.store)
+router.get('/programStudi/create', programStudiController.create)
+router.get('/programStudi', programStudiController.index)
+
+// Jenis Beasiswa
+router.get('/jenisBeasiswa/delete/:id', jenisBeasiswaController.destroy)
+router.get('/jenisBeasiswa/edit/:id', jenisBeasiswaController.edit)
+router.post('/jenisBeasiswa/update', jenisBeasiswaController.update)
+router.post('/jenisBeasiswa/store', jenisBeasiswaController.store)
+router.get('/jenisBeasiswa/create', jenisBeasiswaController.create)
+router.get('/jenisBeasiswa', jenisBeasiswaController.index)
+
+
+
+
+// router.get('/dashboard', function(req, res) {
+//     if (req.user.role === 'administrator') {
+//         res.render('administrator/dashboard');
+//     } else if (req.user.role === 'fakultas') {
+//         res.render('fakultas/dashboard');
+//     } else if (req.user.role === 'program_studi') {
+//         res.render('programStudi/dashboard');
+//     } else if (req.user.role === 'mahasiswa') {
+//         res.render('mahasiswa/dashboard');
+//     } else {
+//         res.redirect('/login');
+//     }
+// })
 
 router.get('/home', (req, res) => {
     res.render('administrator/dashboard')
@@ -72,14 +102,6 @@ router.get('/riwayat', (req, res) => {
 
 router.get('/', (req, res) => {
     res.render('administrator/dashboard')
-})
-
-router.get('/jenisBeasiswa', (req, res) => {
-    res.render('jenis_beasiswa/index')
-})
-
-router.get('/fakultas', (req, res) => {
-    res.render('fakultas/index')
 })
 
 router.get('/programStudi', (req, res) => {

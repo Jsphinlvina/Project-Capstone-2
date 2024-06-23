@@ -23,6 +23,26 @@ class Model {
         })
     }
 
+    findID(id, callback) {
+        const query = `SELECT *
+                       FROM ${this.table}
+                       WHERE id = ?`
+        this.db.query(query, [id], (err, result) => {
+            if (err) return callback(err, null)
+            callback(result[0])
+        })
+    }
+
+    findName(name, callback) {
+        const query = `SELECT *
+                       FROM ${this.table}
+                       WHERE name = ?`
+        this.db.query(query, [name], (err, result) => {
+            if (err) return callback(err, null)
+            callback(result[0])
+        })
+    }
+
     edit(id, callback) {
         const query = `SELECT *
                        FROM ${this.table}
@@ -49,7 +69,7 @@ class Model {
                        WHERE id = ?`
         this.db.query(query, [data, id], (err, result) => {
             if (err) return callback(err, null)
-            callback(null, result.affectedRows)
+            callback(result.affectedRows)
         })
     }
 
@@ -60,6 +80,29 @@ class Model {
         this.db.query(query, [id], (err, result) => {
             if (err) return callback(err, null)
             callback(result.affectedRows)
+        })
+    }
+
+    belongsTo(foreignKey, foreignTable, localKey, id, callback) {
+        const query = `SELECT ft.*
+                       FROM ${foreignTable} ft
+                                JOIN ${this.table} lt ON lt.${foreignKey} = ft.${localKey}
+                       WHERE lt.id = ?`
+
+        this.db.query(query, [id], (err, result) => {
+            if (err) return callback(err, null)
+            callback(null, result[0])
+        })
+    }
+
+    hasMany(localTable, localKey, foreignKey, callback) {
+        const query = `SELECT *
+                       FROM ${localTable}
+                       WHERE ${foreignKey} = ?`
+
+        this.db.query(query, [localKey], (err, result) => {
+            if (err) return callback(err, null)
+            callback(result)
         })
     }
 }

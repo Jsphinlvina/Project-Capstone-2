@@ -9,7 +9,7 @@ block content
                     a.btn.btn-warning.px-4.pt-2(href='javascript:history.back()')
                         strong Back
                 div.card.bg-light.shadow.border-0.rounded-3.mb-4
-                    form.p-5(method='post', action=' ')
+                    form.p-5(method='post', action='/programStudi/update')
                         div.row.mb-3
                             label.form-label.fw-semibold(for="id") ID
                             div.col-sm-8
@@ -17,7 +17,7 @@ block content
                                     name="id",
                                     id="id",
                                     readonly
-                                    value=``)
+                                    value=`${programStudi.id}`)
                         div.row.mb-3
                             label.form-label.fw-semibold(for="name") Name
                             div.col-sm-8
@@ -26,13 +26,14 @@ block content
                                     id="name",
                                     required, autofocus,
                                     maxlength=20,
-                                    value=``)
+                                    value=`${programStudi.name}`)
                         div.row.mb-3
-                            label.form-label.fw-semibold(for="name") Fakultas
+                            label.form-label.fw-semibold(for="fakultas_id") Fakultas
                             div.col-sm-8
-                                select.form-select(aria-label='Default select example')
-                                    option(selected='') Select status
-                                    option(value='IT') Teknologi Informasi
+                                select.form-select(aria-label='Default select example'  name='fakultas_id', id='fakultas_id')
+                                    option(value=`${programStudi.fakultas_id}` selected='') #{programStudi.fakultas.name}
+                                    each fakultas in fakultass
+                                        option(value=`${fakultas.id}`) #{fakultas.name}
 
                         div.d-flex
                             button.btn.btn-success.ms-auto(type="submit") Edit Program Studi

@@ -92,6 +92,12 @@ html
                 main.content.px-3.py-4
                     div.container-fluid
                         div.mb-3
+                            if success
+                                div.alert.alert-success
+                                    strong= success
+                            if error
+                                div.alert.alert-danger
+                                    strong= error
                             block content
 
         // JavaScript

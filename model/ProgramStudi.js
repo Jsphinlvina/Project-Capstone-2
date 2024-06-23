@@ -8,6 +8,11 @@ class ProgramStudi extends Model {
         }
         return ProgramStudi.instance
     }
+
+    fakultas(id, callback) {
+        this.belongsTo('fakultas_id', 'fakultas', 'id', id, callback)
+    }
+
 }
 
 module.exports = ProgramStudi

@@ -3,53 +3,49 @@ extends ../layouts/master
 block content
     main.content.px-3.py-4
         div.container-fluid
-            if success
-                div.alert.alert-success
-                    strong= success
-            div.mb-3
-                div.d-flex.justify-content-between.mb-3
-                    h3.fw-bold.fs-4.mb-3 Role
-                    a.btn.btn-success.px-4.pt-2(href='/role/create')
-                        strong + Add
-                div.card.bg-light.shadow.border-0.rounded-3.mb-4
-                    div.border-bottom.ps-3.pt-3
-                        p.fw-semibold List of Roles
-                    div.table-responsive.small.px-3
-                        table.table.table-striped.table-sm.mt-1
-                            thead
+            div.d-flex.justify-content-between.mb-3
+                h3.fw-bold.fs-4.mb-3 Role
+                a.btn.btn-success.px-4.pt-2(href='/role/create')
+                    strong + Add
+            div.card.bg-light.shadow.border-0.rounded-3.mb-4
+                div.border-bottom.ps-3.pt-3
+                    p.fw-semibold List of Roles
+                div.table-responsive.small.px-3
+                    table.table.table-striped.table-sm.mt-1
+                        thead
+                            tr
+                                th(scope='col') Id
+                                th(scope='col') Nama
+                                th.text-center(scope='col') Edit
+                                th.text-center(scope='col') Delete
+                        tbody
+                            each role in roles
                                 tr
-                                    th(scope='col') Id
-                                    th(scope='col') Nama
-                                    th.text-center(scope='col') Edit
-                                    th.text-center(scope='col') Delete
-                            tbody
-                                each role in roles
-                                    tr
-                                        td #{role.id}
-                                        td #{role.name}
-                                        td.text-center
-                                            a.btn.btn-warning(href=`role/edit/${role.id}`)
-                                                svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                                                    path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
-                                                    path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
-                                        td.text-center
-                                            button.btn.btn-danger.mx-2(data-id=`${role.id}`, data-bs-toggle="modal", data-bs-target="#deleteModal")
-                                                svg.bi.bi-trash-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                                                    path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
+                                    td #{role.id}
+                                    td #{role.name}
+                                    td.text-center
+                                        a.btn.btn-warning(href=`role/edit/${role.id}`)
+                                            svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
+                                                path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
+                                    td.text-center
+                                        button.btn.btn-danger.mx-2(data-id=`${role.id}`, data-bs-toggle="modal", data-bs-target="#deleteModal")
+                                            svg.bi.bi-trash-fill(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                                                path(d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0')
 
-            // DELETE MODAL
-            div#deleteModal.modal.fade(tabindex='-1' aria-labelledby='deleteModalLabel' aria-hidden='true')
-                div.modal-dialog.modal-dialog-centered
-                    div.modal-content
-                        div.modal-header
-                            h1#deleteModalLabel.modal-title.fs-5 Delete Role
-                            button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                        div.modal-body
-                            p.p-0.pb-1.m-0 Apakah anda akan menghapus role ini?
-                            p.fst-italic Data yang dihapus tidak bisa dikembalikan lagi
-                        div.modal-footer
-                            button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
-                            a.btn.btn-danger#confirmDeleteButton(href='/role/delete/') DELETE
+        // DELETE MODAL
+        div#deleteModal.modal.fade(tabindex='-1' aria-labelledby='deleteModalLabel' aria-hidden='true')
+            div.modal-dialog.modal-dialog-centered
+                div.modal-content
+                    div.modal-header
+                        h1#deleteModalLabel.modal-title.fs-5 Delete Role
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    div.modal-body
+                        p.p-0.pb-1.m-0 Apakah anda akan menghapus role ini?
+                        p.fst-italic Data yang dihapus tidak bisa dikembalikan lagi
+                    div.modal-footer
+                        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
+                        a.btn.btn-danger#confirmDeleteButton(href='/role/delete/') DELETE
 
     script.
         document.addEventListener('DOMContentLoaded', function () {

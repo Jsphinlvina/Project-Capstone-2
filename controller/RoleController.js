@@ -1,12 +1,16 @@
 const Roles = require('../model/Roles')
+const Fakultas = require("../model/Fakultas");
 
 const index = (req, res) => {
     const success = req.session.success || ''
+    const error = req.session.error || ''
     delete req.session.success
+    delete req.session.error
     new Roles().all((roles) => {
         res.render('role/index', {
             roles: roles,
-            success: success
+            success: success,
+            error: error
         })
     })
 }
@@ -21,11 +25,26 @@ const store = (req, res) => {
         name: req.body.name
     }
 
-    new Roles().save(role, (result) => {
-        req.session.success = `Role ${role.name} berhasil ditambahkan`
-        res.redirect('/role')
+    new Roles().findID(role.id, (existingID) => {
+        if (existingID) {
+            req.session.error = `Role dengan ID ${role.id} sudah ada, silakan gunakan ID lain.`;
+            return res.redirect('/role');
+        }
+
+        new Roles().findName(role.name, (existingName) => {
+            if (existingName) {
+                req.session.error = `Role dengan Nama ${role.name} sudah ada, silakan gunakan Nama lain.`;
+                return res.redirect('/role');
+            }
+
+            new Roles().save(role, (result) => {
+                req.session.success = `Role ${role.name} berhasil ditambahkan`;
+                res.redirect('/role');
+            })
+        })
     })
 }
+
 
 const edit = (req, res) => {
     const id = req.params.id
@@ -40,10 +59,17 @@ const update = (req, res) => {
         name: req.body.name
     }
 
-    new Roles().update(role, (result) => {
-        req.session.success = `Role ${role.id} berhasil diubah`
-        res.redirect('/role')
-    })
+     new Roles().findName(role.name, (existingName) => {
+         if (existingName) {
+             req.session.error = `Role dengan Nama ${role.name} sudah ada, silakan gunakan Nama lain.`;
+             return res.redirect('/role');
+         }
+
+         new Roles().update(role, (result) => {
+             req.session.success = `Role ${role.id} berhasil diubah`
+             res.redirect('/role')
+         })
+     })
 }
 
 const destroy = (req, res) => {
