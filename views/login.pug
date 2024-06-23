@@ -1,35 +1,20 @@
 doctype html
-html
+html(lang="en")
     head
-        meta(charset="utf-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1")
-        title Login - Pengajuan Beasiswa Internal
-        // Bootstrap CSS
-        link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
-        // Custom CSS (if any)
-        link(rel='stylesheet', href='/css/style.css')
-    body
-        div.container
-            div.row.justify-content-center
-                div.col-md-6
-                    div.card.mt-5
-                        div.card-body
-                            h3.card-title.text-center Login
-                            form(action='/login', method='POST')
-                                div.mb-3
-                                    label(for='username', class='form-label') Username or Email
-                                    input#username.form-control(type='text', name='username', required=true, placeholder='Enter your username or email')
-                                div.mb-3
-                                    label(for='password', class='form-label') Password
-                                    input#password.form-control(type='password', name='password', required=true, placeholder='Enter your password')
-                                div.mb-3.form-check
-                                    input#rememberMe.form-check-input(type='checkbox', name='remember')
-                                    label(for='rememberMe', class='form-check-label') Remember Me
-                                button.btn.btn-primary(type='submit') Login
-                                div.mt-3
-                                    a(href='/reset-password') Forgot Password?
-                                div.mt-2
-                                    a(href='/register') Register for a new account
-
-        // Bootstrap JS and dependencies
-        script(src='/bootstrap/dist/js/bootstrap.bundle.min.js')
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Login
+        link(rel="stylesheet" href='/css/dashboard.css')
+    body.login-body
+        .login-container
+            h1 Login
+            form(action="/login" method="POST")
+                .form-group
+                    label(for="username") Username
+                    input(type="text" id="username" name="username" required)
+                .form-group
+                    label(for="password") Password
+                    input(type="password" id="password" name="password" required)
+                button(type="submit" class="btn") Login
+                .text-center
+                    a(href="/register") Create an account

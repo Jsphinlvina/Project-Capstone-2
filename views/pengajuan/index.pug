@@ -16,7 +16,7 @@ block content
                         div.card-header.text-white(style="background-color:#113946")
                             h5 Daftar beasiswa
                         div.card-body
-                            form(action='/submit-pengajuan' method='post')
+                            form#form-step-1(action='/submit-pengajuan' method='post')
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='nrp') NRP :
                                     div.col-sm-8
@@ -80,14 +80,14 @@ block content
                                             option(value='Ganjil 2024/2025') Ganjil 2024/2025
                                             option(value='Genap 2024/2025') Genap 2024/2025
                                 div.d-flex.justify-content-lg-end
-                                    button.btn.btn-primary(type='button' onclick='showNextStep()') Selanjutnya
+                                    button.btn.btn-primary(type='button' onclick='validateStep1()') Selanjutnya
 
                     // Upload form - Step 2
                     div#step-2.card.bg-light.shadow.border-0.rounded-3.mb-4(style='display:none')
                         div.card-header.text-white(style="background-color:#113946")
                             h5 Upload Kelengkapan
                         div.card-body
-                            form(action='/submit-upload' method='post' enctype='multipart/form-data')
+                            form#form-step-2(action='/submit-upload' method='post' enctype='multipart/form-data')
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='surat_rekomendasi') Surat Rekomendasi Dosen :
                                     div.col-sm-8
@@ -114,7 +114,7 @@ block content
                                         input#lampiran.form-control(type='file' name='lampiran')
                                 div.d-flex.justify-content-between
                                     button.btn.btn-secondary(type='button' onclick='showPreviousStep()') Sebelumnya
-                                    button.btn.btn-primary(type='button' onclick='showNextStep2()') Selanjutnya
+                                    button.btn.btn-primary(type='button' onclick='validateStep2()') Selanjutnya
 
 
                     // Confirmation form - Step 3
@@ -130,6 +130,24 @@ block content
 
     // JavaScript
     script.
+        function validateStep1() {
+            const form = document.getElementById('form-step-1');
+            if (form.checkValidity()) {
+                showNextStep();
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        function validateStep2() {
+            const form = document.getElementById('form-step-2');
+            if (form.checkValidity()) {
+                showNextStep2();
+            } else {
+                form.reportValidity();
+            }
+        }
+
         function showNextStep() {
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'block';
