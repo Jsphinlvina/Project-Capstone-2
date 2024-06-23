@@ -53,8 +53,8 @@ block content
         document.addEventListener('DOMContentLoaded', function () {
             var deleteModal = document.getElementById('deleteModal');
             deleteModal.addEventListener('show.bs.modal', function (event) {
-                var button = event.relatedTarget; // Button that triggered the modal
-                var jenisBesiswaId = button.getAttribute('data-id'); // Extract info from data-* attributes
+                var button = event.relatedTarget;
+                var jenisBesiswaId = button.getAttribute('data-id');
                 var confirmDeleteButton = document.getElementById('confirmDeleteButton');
                 confirmDeleteButton.href = `/jenisBeasiswa/delete/${jenisBesiswaId}`;
             });
