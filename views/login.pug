@@ -8,13 +8,19 @@ html(lang="en")
     body.login-body
         .login-container
             h1 Login
+            if error
+                .alert.alert-danger #{error}
             form(action="/login" method="POST")
                 .form-group
-                    label(for="username") Username
-                    input(type="text" id="username" name="username" required)
+                    label(for="email") Email
+                    input(type="email" id="email" name="email" required)
                 .form-group
                     label(for="password") Password
                     input(type="password" id="password" name="password" required)
+                .form-group
+                    label(for="role") Login sebagai
+                    select(name="role" id="role" class="form-control" required)
+                        option(value="" disabled selected) -- Pilih Peran --
+                        option(value="mahasiswa") Mahasiswa
+                        option(value="staff") Staff
                 button(type="submit" class="btn") Login
-                .text-center
-                    a(href="/register") Create an account
