@@ -15,6 +15,7 @@ const userController = require('../controller/UsersController')
 const fakultasController = require('../controller/FakultasController')
 const programStudiController = require('../controller/ProgramStudiController')
 const jenisBeasiswaController = require('../controller/JenisBeasiswaController')
+const jenisDokumenController = require('../controller/JenisDokumenController')
 const periodeController = require('../controller/PeriodeController')
 
 // Role
@@ -56,6 +57,14 @@ router.post('/jenisBeasiswa/update', jenisBeasiswaController.update)
 router.post('/jenisBeasiswa/store', jenisBeasiswaController.store)
 router.get('/jenisBeasiswa/create', jenisBeasiswaController.create)
 router.get('/jenisBeasiswa', jenisBeasiswaController.index)
+
+// Jenis Dokumen
+router.get('/jenisDokumen/delete/:id', jenisBeasiswaController.destroy)
+router.get('/jenisDokumen/edit/:id', jenisBeasiswaController.edit)
+router.post('/jenisDokumen/update', jenisBeasiswaController.update)
+router.post('/jenisDokumen/store', jenisBeasiswaController.store)
+router.get('/jenisDokumen/create', jenisBeasiswaController.create)
+router.get('/jenisDokumen', jenisBeasiswaController.index)
 
 // Periode
 router.get('/periode/delete/:id', periodeController.destroy)
