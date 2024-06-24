@@ -7,12 +7,20 @@ const index = (req, res) => {
         let usersData = [];
         let processed = 0;
 
+        if (!users || users.length === 0) {
+            return res.render('users/index', {
+                users: usersData,
+                success: req.session.success || '',
+                error: req.session.error || ''
+            });
+        }
+
         users.forEach(user => {
-            new Users().role(user.id, (err, role) => {
+            new Users().role(user.role_id, (err, role) => {
 
                 user.role = role;
 
-                new Users().program_studi(user.id, (err, programStudi) => {
+                new Users().program_studi(user.program_studi_id, (err, programStudi) => {
 
                     user.program_studi = programStudi;
 
