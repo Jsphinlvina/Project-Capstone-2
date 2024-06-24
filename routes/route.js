@@ -17,6 +17,7 @@ const programStudiController = require('../controller/ProgramStudiController')
 const jenisBeasiswaController = require('../controller/JenisBeasiswaController')
 const jenisDokumenController = require('../controller/JenisDokumenController')
 const periodeController = require('../controller/PeriodeController')
+const statusController = require('../controller/StatusController')
 
 // Role
 router.get('/role/delete/:id', roleController.destroy)
@@ -59,12 +60,12 @@ router.get('/jenisBeasiswa/create', jenisBeasiswaController.create)
 router.get('/jenisBeasiswa', jenisBeasiswaController.index)
 
 // Jenis Dokumen
-router.get('/jenisDokumen/delete/:id', jenisBeasiswaController.destroy)
-router.get('/jenisDokumen/edit/:id', jenisBeasiswaController.edit)
-router.post('/jenisDokumen/update', jenisBeasiswaController.update)
-router.post('/jenisDokumen/store', jenisBeasiswaController.store)
-router.get('/jenisDokumen/create', jenisBeasiswaController.create)
-router.get('/jenisDokumen', jenisBeasiswaController.index)
+router.get('/jenisDokumen/delete/:id', jenisDokumenController.destroy)
+router.get('/jenisDokumen/edit/:id', jenisDokumenController.edit)
+router.post('/jenisDokumen/update', jenisDokumenController.update)
+router.post('/jenisDokumen/store', jenisDokumenController.store)
+router.get('/jenisDokumen/create', jenisDokumenController.create)
+router.get('/jenisDokumen', jenisDokumenController.index)
 
 // Periode
 router.get('/periode/delete/:id', periodeController.destroy)
@@ -73,6 +74,14 @@ router.post('/periode/update', periodeController.update)
 router.post('/periode/store', periodeController.store)
 router.get('/periode/create', periodeController.create)
 router.get('/periode', periodeController.index)
+
+// Status
+router.get('/status/delete/:id', statusController.destroy)
+router.get('/status/edit/:id', statusController.edit)
+router.post('/status/update', statusController.update)
+router.post('/status/store', statusController.store)
+router.get('/status/create', statusController.create)
+router.get('/status', statusController.index)
 
 
 

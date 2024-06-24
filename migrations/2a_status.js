@@ -6,6 +6,7 @@ exports.up = function (knex) {
     return knex.schema.hasTable('status').then(function (exists) {
         if (!exists) {
             return knex.schema.createTable('status', function (table) {
+                table.string('id', 5).notNullable().primary()
                 table.string('jenis_beasiswa_id', 5).notNullable()
                 table.string('periode_id', 5).notNullable()
                 table.date('tanggal_mulai').notNullable()

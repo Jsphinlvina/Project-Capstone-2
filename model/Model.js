@@ -87,7 +87,7 @@ class Model {
         const query = `SELECT ft.*
                        FROM ${foreignTable} ft
                                 JOIN ${this.table} lt ON lt.${foreignKey} = ft.${localKey}
-                       WHERE lt.id = ?`
+                       WHERE lt.${foreignKey} = ?`
 
         this.db.query(query, [id], (err, result) => {
             if (err) return callback(err, null)

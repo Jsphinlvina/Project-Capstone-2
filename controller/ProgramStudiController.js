@@ -6,16 +6,16 @@ const index = (req, res) => {
         let programStudiData = []
         let processed = 0
 
-        // if (!programStudies || programStudies.length === 0) {
-        //     return res.render('programStudi/index', {
-        //         programStudies: programStudiData,
-        //         success: req.session.success || '',
-        //         error: req.session.error || ''
-        //     });
-        // }
+        if (!programStudies || programStudies.length === 0) {
+            return res.render('programStudi/index', {
+                programStudies: programStudiData,
+                success: req.session.success || '',
+                error: req.session.error || ''
+            });
+        }
 
         programStudies.forEach(programStudi => {
-            new ProgramStudi().fakultas(programStudi.id, (err, fakultass) => {
+            new ProgramStudi().fakultas(programStudi.fakultas_id, (err, fakultass) => {
 
                 programStudi.fakultas = fakultass
                 console.log(fakultass)

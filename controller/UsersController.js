@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const Users = require('../model/Users');
 const Roles = require("../model/Roles");
+const ProgramStudi = require('../model/ProgramStudi')
 
 const index = (req, res) => {
     new Users().all((err, users) => {

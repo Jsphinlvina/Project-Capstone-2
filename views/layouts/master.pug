@@ -43,6 +43,8 @@ html
                             li.sidebar-item
                                 a.sidebar-link(href='/jenisBeasiswa') Jenis Beasiswa
                             li.sidebar-item
+                                a.sidebar-link(href='/jenisDokumen') Jenis Dokumen
+                            li.sidebar-item
                                 a.sidebar-link(href='/periode') Periode
                             li.sidebar-item
                                 a.sidebar-link(href='/mahasiswa') Mahasiswa
@@ -54,6 +56,10 @@ html
                                 a.sidebar-link(href='/userManagement') User Management
                             li.sidebar-item
                                 a.sidebar-link(href='/role') Role Management
+                    li.sidebar-item
+                        a.sidebar-link.collapsed.has-dropdown(href='/status')
+                            i.lni.lni-folder
+                            span Pengaturan Periode
                     li.sidebar-item
                         a.sidebar-link(href='')
                             i.lni.lni-download
@@ -81,10 +87,6 @@ html
                             button.btn.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                                 |    Your Name
                             ul.dropdown-menu.dropdown-menu-end.nav-background.py-2
-                                li
-                                    a.dropdown-item(href='#')
-                                        i.lni.lni-user
-                                        span Profile
                                 li
                                     a.dropdown-item(href='#')
                                         i.lni.lni-exit
