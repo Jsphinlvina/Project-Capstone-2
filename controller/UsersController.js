@@ -4,28 +4,23 @@ const Roles = require("../model/Roles");
 
 const index = (req, res) => {
     new Users().all((err, users) => {
-        if (err) {
-            req.session.error = 'Internal server error';
-            return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-        }
-
         let usersData = [];
         let processed = 0;
 
+        if (!users || users.length === 0) {
+            return res.render('users/index', {
+                users: usersData,
+                success: req.session.success || '',
+                error: req.session.error || ''
+            });
+        }
+
         users.forEach(user => {
             new Users().role(user.role_id, (err, role) => {
-                if (err) {
-                    req.session.error = 'Internal server error';
-                    return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-                }
 
                 user.role = role;
 
-                new Users().program_studi(user.program_studi, (err, programStudi) => {
-                    if (err) {
-                        req.session.error = 'Internal server error';
-                        return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-                    }
+                new Users().program_studi(user.program_studi_id, (err, programStudi) => {
 
                     user.program_studi = programStudi;
 
@@ -51,10 +46,6 @@ const create = (req, res) => {
 
 const store = (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
-        if (err) {
-            req.session.error = 'Error while hashing password';
-            return res.redirect('/users/create');
-        }
 
         const user = {
             id: req.body.id,
@@ -76,20 +67,12 @@ const store = (req, res) => {
 const edit = (req, res) => {
     const id = req.params.id;
     new Users().edit(id, (err, user) => {
-        if (err) {
-            req.session.error = 'Internal server error';
-            return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-        }
-        res.render('users/edit', { user: user });
+        res.render('users/edit', {user: user});
     });
 }
 
 const update = (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
-        if (err) {
-            req.session.error = 'Error while hashing password';
-            return res.redirect(`/users/edit/${req.body.id}`);
-        }
 
         const user = {
             id: req.body.id,
@@ -102,10 +85,6 @@ const update = (req, res) => {
         }
 
         new Users().update(user, (err, result) => {
-            if (err) {
-                req.session.error = 'Internal server error';
-                return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-            }
             req.session.success = `User ${user.id} berhasil diubah`;
             res.redirect('/users');
         });
@@ -115,13 +94,10 @@ const update = (req, res) => {
 const destroy = (req, res) => {
     const id = req.params.id;
     new Users().delete(id, (err, result) => {
-        if (err) {
-            req.session.error = 'Internal server error';
-            return res.redirect('/error'); // Redirect to an error page or handle error appropriately
-        }
+
         req.session.success = `User ${id} berhasil dihapus`;
         res.redirect('/users');
     });
 }
 
-module.exports = { index, create, store, edit, update, destroy };
+module.exports = {index, create, store, edit, update, destroy};

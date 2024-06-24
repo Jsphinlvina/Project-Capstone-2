@@ -11,9 +11,12 @@ router.get('/login', (req, res) => {
 
 // Controller
 const roleController = require('../controller/RoleController')
+const userController = require('../controller/UsersController')
 const fakultasController = require('../controller/FakultasController')
 const programStudiController = require('../controller/ProgramStudiController')
 const jenisBeasiswaController = require('../controller/JenisBeasiswaController')
+const jenisDokumenController = require('../controller/JenisDokumenController')
+const periodeController = require('../controller/PeriodeController')
 
 // Role
 router.get('/role/delete/:id', roleController.destroy)
@@ -22,6 +25,14 @@ router.post('/role/update', roleController.update)
 router.post('/role/store', roleController.store)
 router.get('/role/create', roleController.create)
 router.get('/role', roleController.index)
+
+// User
+router.get('/user/delete/:id', userController.destroy)
+router.get('/user/edit/:id', userController.edit)
+router.post('/user/update', userController.update)
+router.post('/user/store', userController.store)
+router.get('/user/create', userController.create)
+router.get('/user', userController.index)
 
 // Fakultas
 router.get('/fakultas/delete/:id', fakultasController.destroy)
@@ -46,6 +57,22 @@ router.post('/jenisBeasiswa/update', jenisBeasiswaController.update)
 router.post('/jenisBeasiswa/store', jenisBeasiswaController.store)
 router.get('/jenisBeasiswa/create', jenisBeasiswaController.create)
 router.get('/jenisBeasiswa', jenisBeasiswaController.index)
+
+// Jenis Dokumen
+router.get('/jenisDokumen/delete/:id', jenisBeasiswaController.destroy)
+router.get('/jenisDokumen/edit/:id', jenisBeasiswaController.edit)
+router.post('/jenisDokumen/update', jenisBeasiswaController.update)
+router.post('/jenisDokumen/store', jenisBeasiswaController.store)
+router.get('/jenisDokumen/create', jenisBeasiswaController.create)
+router.get('/jenisDokumen', jenisBeasiswaController.index)
+
+// Periode
+router.get('/periode/delete/:id', periodeController.destroy)
+router.get('/periode/edit/:id', periodeController.edit)
+router.post('/periode/update', periodeController.update)
+router.post('/periode/store', periodeController.store)
+router.get('/periode/create', periodeController.create)
+router.get('/periode', periodeController.index)
 
 
 

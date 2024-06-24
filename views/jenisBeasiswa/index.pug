@@ -43,7 +43,7 @@ block content
                             h1#deleteModalLabel.modal-title.fs-5 Delete Role
                             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
                         div.modal-body
-                            p.p-0.pb-1.m-0 Apakah anda akan menghapus role ini?
+                            p.p-0.pb-1.m-0 Apakah anda akan menghapus jenis dokumen ini?
                             p.fst-italic Data yang dihapus tidak bisa dikembalikan lagi
                         div.modal-footer
                             button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancel
@@ -53,8 +53,8 @@ block content
         document.addEventListener('DOMContentLoaded', function () {
             var deleteModal = document.getElementById('deleteModal');
             deleteModal.addEventListener('show.bs.modal', function (event) {
-                var button = event.relatedTarget; // Button that triggered the modal
-                var jenisBesiswaId = button.getAttribute('data-id'); // Extract info from data-* attributes
+                var button = event.relatedTarget;
+                var jenisBesiswaId = button.getAttribute('data-id');
                 var confirmDeleteButton = document.getElementById('confirmDeleteButton');
                 confirmDeleteButton.href = `/jenisBeasiswa/delete/${jenisBesiswaId}`;
             });
