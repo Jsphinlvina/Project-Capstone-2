@@ -76,7 +76,6 @@ const store = (req, res) => {
 const edit = (req, res) => {
     const id = req.params.id;
     new Users().edit(id, (err, user) => {
-
         new Users().program_studi(user.program_studi_id, (err, program_studi) => {
             user.program_studi = program_studi
 
