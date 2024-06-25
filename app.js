@@ -9,7 +9,7 @@ const app = express()
 
 //tambahan
 // Passport Config
-require('./config/passport')(passport);
+require('./config/passport')(passport)
 
 app.set('view engine', 'pug')
 app.set('views', 'views')

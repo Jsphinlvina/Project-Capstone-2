@@ -44,13 +44,13 @@ class Model {
     }
 
     findBy(field, value, callback) {
-        const query = `SELECT * FROM ${this.table} WHERE ${field} = ? LIMIT 1`;
+        const query = `SELECT * FROM ${this.table} WHERE ${field} = ? LIMIT 1`
         this.db.query(query, [value], (err, row) => {
             if (err) {
-                return callback(err, null);
+                return callback(err, null)
             }
-            callback(null, row[0]);
-        });
+            callback(null, row[0])
+        })
     }
 
     edit(id, callback) {

@@ -4,8 +4,8 @@ const Users = require('../model/Users');
 const Mahasiswa = require('../model/Mahasiswa');
 
 const login = (req, res) => {
-    res.render('login', { error: req.flash('error') });
-};
+    res.render('login', { error: req.flash('error') })
+}
 
 const authenticate = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
