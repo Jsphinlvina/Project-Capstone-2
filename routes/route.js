@@ -22,6 +22,7 @@ const jenisDokumenController = require('../controller/JenisDokumenController')
 const periodeController = require('../controller/PeriodeController')
 const statusController = require('../controller/StatusController')
 const pengajuanController = require('../controller/PengajuanController')
+const mahasiswaController = require('../controller/MahasiswaController')
 
 // Middleware untuk memeriksa peran
 function checkRole(roles) {
@@ -51,6 +52,13 @@ router.post('/users/store', checkRole(['1']), userController.store)
 router.get('/users/create', checkRole(['1']), userController.create)
 router.get('/users', checkRole(['1']), userController.index)
 
+// Mahasiswa
+router.get('/mahasiswa/delete/:id', checkRole(['1']), mahasiswaController.destroy)
+router.get('/mahasiswa/edit/:id', checkRole(['1']), mahasiswaController.edit)
+router.post('/mahasiswa/update', checkRole(['1']), mahasiswaController.update)
+router.post('/mahasiswa/store', checkRole(['1']), mahasiswaController.store)
+router.get('/mahasiswa/create', checkRole(['1']), mahasiswaController.create)
+router.get('/mahasiswa', checkRole(['1']), mahasiswaController.index)
 
 // Fakultas
 router.get('/fakultas/delete/:id', checkRole(['1']), fakultasController.destroy)

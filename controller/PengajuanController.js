@@ -1,5 +1,7 @@
 const Status = require('../model/Status')
 const User = require('../model/Users')
+const Periode = require("../model/Periode");
+const JenisBeasiswa = require("../model/JenisBeasiswa");
 
 const formatDateIndex = (date) => {
     const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
@@ -62,22 +64,29 @@ const index = (req, res) => {
 }
 
 const pengajuanBeasiswa = (req, res) => {
-    const userId = req.session.userId; // Assuming userId is stored in session
-    if (!userId) {
-        req.session.error = 'Please log in to submit your application.';
-        return res.redirect('/login'); // Redirect to login if user is not authenticated
-    }
+    const id = req.params.id
+    new Status().edit(id, (status) => {
+        status.tanggal_mulai = formatDate(status.tanggal_mulai);
+        status.tanggal_akhir = formatDate(status.tanggal_akhir);
 
-    new User().findID(userId, (err, user) => {
-        res.render('pengajuan/pengajuanBeasiswa', {
-            user: user,
-            success: req.session.success || '',
-            error: req.session.error || ''
-        });
+        new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenisBeasiswas)=>{
+            status.jenis_beasiswas = jenisBeasiswas
 
-        delete req.session.success;
-        delete req.session.error;
-    });
+            new Status().periode(status.periode_id, (err, periode)=>{
+                status.periode = periode
+
+                new Periode().all((periodes) => {
+                    new JenisBeasiswa().all((jenisBeasiswas) => {
+                        res.render('pengajuan/pengajuanBeasiswa', {
+                            status: status,
+                            periodes: periodes,
+                            jenisBeasiswas: jenisBeasiswas
+                        })
+                    })
+                })
+            })
+        })
+    })
 };
 
 module.exports = {index, pengajuanBeasiswa}
