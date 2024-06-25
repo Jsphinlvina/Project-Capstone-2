@@ -28,9 +28,10 @@ class Status extends Model {
             if (err) {
                 return callback(err, null);
             }
-            return callback(null,results[0]);
+            return callback(null, results.length > 0 ? results[0] : null);
         });
     }
+
 
 }
 

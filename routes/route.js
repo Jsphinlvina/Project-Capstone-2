@@ -18,6 +18,7 @@ const jenisBeasiswaController = require('../controller/JenisBeasiswaController')
 const jenisDokumenController = require('../controller/JenisDokumenController')
 const periodeController = require('../controller/PeriodeController')
 const statusController = require('../controller/StatusController')
+const pengajuanController = require('../controller/PengajuanController')
 
 // Role
 router.get('/role/delete/:id', roleController.destroy)
@@ -83,8 +84,8 @@ router.post('/status/store', statusController.store)
 router.get('/status/create', statusController.create)
 router.get('/status', statusController.index)
 
-
-
+// Pengajuan
+router.get('/pengajuan', pengajuanController.index)
 
 // router.get('/dashboard', function(req, res) {
 //     if (req.user.role === 'administrator') {
@@ -128,13 +129,9 @@ router.get('/applicants01', (req, res) => {
     res.render('fakultas/applicants')
 })
 
-router.get('/pengajuan', (req, res) => {
-    res.render('pengajuan/index')
-})
-
-router.get('/riwayat', (req, res) => {
-    res.render('pengajuan/riwayat')
-})
+// router.get('/riwayat', (req, res) => {
+//     res.render('pengajuan/riwayat')
+// })
 
 router.get('/', (req, res) => {
     res.render('administrator/dashboard')
