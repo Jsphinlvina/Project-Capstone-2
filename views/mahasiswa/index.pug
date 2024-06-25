@@ -4,12 +4,12 @@ block content
     main.content.px-3.py-4
         div.container-fluid
             div.d-flex.justify-content-between.mb-3
-                h3.fw-bold.fs-4.mb-3 User
+                h3.fw-bold.fs-4.mb-3 Mahasiswa
                 a.btn.btn-success.px-4.pt-2(href='/mahasiswa/create')
                     strong + Add
             div.card.bg-light.shadow.border-0.rounded-3.mb-4
                 div.border-bottom.ps-3.pt-3
-                    p.fw-semibold List of Users
+                    p.fw-semibold List of Mahasiswa
                 div.table-responsive.small.px-3
                     table.table.table-striped.table-sm.mt-1
                         thead
@@ -23,7 +23,7 @@ block content
                                 th.text-center(scope='col') Edit
                                 th.text-center(scope='col') Delete
                         tbody
-                            each mahasiswa in mahasiswa
+                            each mahasiswa in mahasiswas
                                 tr
                                     td #{mahasiswa.id}
                                     td #{mahasiswa.name}

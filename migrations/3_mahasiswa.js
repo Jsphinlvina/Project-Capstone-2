@@ -12,7 +12,7 @@ exports.up = function (knex) {
                 table.string('password').notNullable()
                 table.string('program_studi_id', 5).notNullable()
                 table.string('role_id', 1).notNullable()
-                table.float('ipk').notNullable()
+                table.string('ipk').notNullable()
                 table.string('angkatan', 4).notNullable()
                 table.string('no_tlp', 20).notNullable()
                 table.string('alamat', 50).notNullable()

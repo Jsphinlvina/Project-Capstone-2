@@ -76,7 +76,24 @@ const store = (req, res) => {
 const edit = (req, res) => {
     const id = req.params.id;
     new Users().edit(id, (err, user) => {
-        res.render('users/edit', {user: user});
+
+        new Users().program_studi(user.program_studi_id, (err, program_studi) => {
+            user.program_studi = program_studi
+
+            new Users().role(user.role_id, (err, role) => {
+                user.role = role
+
+                new ProgramStudi().all((program_studi) => {
+                    new Roles().all((roles) => {
+                        res.render('users/edit', {
+                            user: user,
+                            program_studi: program_studi,
+                            roles: roles
+                        })
+                    })
+                })
+            })
+        })
     });
 }
 

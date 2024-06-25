@@ -19,7 +19,8 @@ class Users extends Model {
     }
 
     all(callback) {
-        const query = `SELECT * FROM ${this.table}`;
+        const query = `SELECT *
+                       FROM ${this.table}`;
         this.db.query(query, (err, results) => {
             if (err) {
                 return callback(err, null);
@@ -28,6 +29,15 @@ class Users extends Model {
         });
     }
 
+    edit(id, callback) {
+        const query = `SELECT *
+                       FROM ${this.table}
+                       WHERE id = ?`
+        this.db.query(query, [id], (err, result) => {
+            if (err) return callback(err, null)
+            callback(result[0])
+        })
+    }
 }
 
 module.exports = Users;

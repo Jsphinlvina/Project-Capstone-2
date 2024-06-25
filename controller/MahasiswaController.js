@@ -6,12 +6,12 @@ const ProgramStudi = require('../model/ProgramStudi')
 
 const index = (req, res) => {
     new Mahasiswa().all((err, mahasiswa) => {
-        let usersData = [];
+        let mahasiswaData = [];
         let processed = 0;
 
         if (!mahasiswa || mahasiswa.length === 0) {
             return res.render('mahasiswa/index', {
-                mahasiswa: usersData,
+                mahasiswas: mahasiswaData,
                 success: req.session.success || '',
                 error: req.session.error || ''
             });
@@ -26,12 +26,12 @@ const index = (req, res) => {
 
                     mahasiswa.program_studi = programStudi;
 
-                    usersData.push(mahasiswa);
+                    mahasiswaData.push(mahasiswa);
                     processed++;
 
                     if (processed === mahasiswa.length) {
                         res.render('mahasiswa/index', {
-                            mahasiswa: usersData,
+                            mahasiswas: mahasiswa,
                             success: req.session.success || '',
                             error: req.session.error || ''
                         });
@@ -66,6 +66,8 @@ const store = (req, res) => {
             program_studi_id: req.body.program_studi_id
         }
 
+        console.log(mahasiswa)
+
         new Mahasiswa().save(mahasiswa, (result) => {
             req.session.success = `Mahasisswa ${mahasiswa.name} telah berhasil ditambahkan`;
             res.redirect('/mahasiswa');
@@ -76,9 +78,18 @@ const store = (req, res) => {
 const edit = (req, res) => {
     const id = req.params.id;
     new Mahasiswa().edit(id, (err, mahasiswa) => {
-        res.render('mahasiswa/edit', {mahasiswa: mahasiswa});
-    });
+        new Roles().all((roles) => {
+            new ProgramStudi().all((program_studi) => {
+                res.render('mahasiswa/edit', {
+                    mahasiswa: mahasiswa,
+                    roles: roles,
+                    program_studi: program_studi
+                })
+            })
+        })
+    })
 }
+
 
 const update = (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
