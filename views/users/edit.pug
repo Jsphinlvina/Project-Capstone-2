@@ -17,7 +17,7 @@ block content
                                     name="id",
                                     id="id",
                                     readonly
-                                    value=`#{user.id}`)
+                                    value=`${user.id}`)
                         div.row.mb-3
                             label.form-label.fw-semibold(for="name") Name
                             div.col-sm-8
@@ -25,8 +25,7 @@ block content
                                     name="name",
                                     id="name",
                                     required, autofocus,
-                                    maxlength=20,
-                                    value=`#{user.name}`)
+                                    value=`${user.name}`)
                         div.row.mb-3
                             label.form-label.fw-semibold(for="email") Email
                             div.col-sm-8
@@ -34,8 +33,7 @@ block content
                                     name="email",
                                     id="email",
                                     required, autofocus,
-                                    maxlength=50,
-                                    value=`#{user.email}`)
+                                    value=`${user.email}`)
                         div.row.mb-3
                             label.form-label.fw-semibold(for="email") Password
                             div.col-sm-8
@@ -43,13 +41,12 @@ block content
                                     name="password",
                                     id="password",
                                     required, autofocus,
-                                    maxlength=8,
-                                    value=`#{user.password}`)
+                                    value=`${user.password}`)
                         div.row.mb-3
                             label.form-label.fw-semibold(for="name") Status
                             div.col-sm-8
                                 select.form-select(aria-label='Default select example')
-                                    if status.status == 1
+                                    if user.status == 1
                                         option(value="1" selected) Aktif
                                         option(value="0") Tidak Aktif
                                     else

@@ -5,33 +5,33 @@ const ProgramStudi = require('../model/ProgramStudi')
 
 
 const index = (req, res) => {
-    new Mahasiswa().all((err, mahasiswa) => {
-        let mahasiswaData = [];
+    new Mahasiswa().all((err, users) => {
+        let usersData = [];
         let processed = 0;
 
-        if (!mahasiswa || mahasiswa.length === 0) {
+        if (!users || users.length === 0) {
             return res.render('mahasiswa/index', {
-                mahasiswas: mahasiswaData,
+                mahasiswas: usersData,
                 success: req.session.success || '',
                 error: req.session.error || ''
             });
         }
 
-        mahasiswa.forEach(mahasiswa => {
-            new Mahasiswa().role(mahasiswa.role_id, (err, role) => {
+        users.forEach(user => {
+            new Mahasiswa().role(user.role_id, (err, role) => {
 
-                mahasiswa.role = role;
+                user.role = role;
 
-                new Mahasiswa().program_studi(mahasiswa.program_studi_id, (err, programStudi) => {
+                new Mahasiswa().program_studi(user.program_studi_id, (err, programStudi) => {
 
-                    mahasiswa.program_studi = programStudi;
+                    user.program_studi = programStudi;
 
-                    mahasiswaData.push(mahasiswa);
+                    usersData.push(user);
                     processed++;
 
-                    if (processed === mahasiswa.length) {
+                    if (processed === users.length) {
                         res.render('mahasiswa/index', {
-                            mahasiswas: mahasiswa,
+                            mahasiswas: usersData,
                             success: req.session.success || '',
                             error: req.session.error || ''
                         });
@@ -55,21 +55,32 @@ const create = (req, res) => {
 
 const store = (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+        if (err) {
+            req.session.error = 'Error hashing password';
+            return res.redirect('/mahasiswa/create');
+        }
 
         const mahasiswa = {
             id: req.body.id,
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
-            status: req.body.status,
+            program_studi_id: req.body.program_studi_id,
             role_id: req.body.role_id,
-            program_studi_id: req.body.program_studi_id
+            ipk: req.body.ipk,
+            angkatan: req.body.angkatan,
+            no_tlp: req.body.no_tlp,
+            alamat: req.body.alamat
         }
 
         console.log(mahasiswa)
 
-        new Mahasiswa().save(mahasiswa, (result) => {
-            req.session.success = `Mahasisswa ${mahasiswa.name} telah berhasil ditambahkan`;
+        new Mahasiswa().save(mahasiswa, (result, err) => {
+            if (err) {
+                req.session.error = 'Error saving mahasiswa';
+                return res.redirect('/mahasiswa/create');
+            }
+            req.session.success = `Mahasiswa ${mahasiswa.name} telah berhasil ditambahkan`;
             res.redirect('/mahasiswa');
         });
     });
@@ -99,9 +110,12 @@ const update = (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
-            status: req.body.status,
+            program_studi_id: req.body.program_studi_id,
             role_id: req.body.role_id,
-            program_studi_id: req.body.program_studi_id
+            ipk : req.body.ipk,
+            angkatan : req.body.angkatan,
+            no_tlp  : req.body.no_tlp,
+            alamat : req.body.alamat
         }
 
         new Mahasiswa().update(mahasiswa, (err, result) => {

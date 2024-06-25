@@ -68,7 +68,7 @@ class Model {
                        SET ?`
         this.db.query(query, data, (err, result) => {
             if (err) return callback(err, null)
-            callback(result.insertId)
+            callback(result)
         })
     }
 
@@ -79,7 +79,7 @@ class Model {
                        WHERE id = ?`
         this.db.query(query, [data, id], (err, result) => {
             if (err) return callback(err, null)
-            callback(result.affectedRows)
+            callback(result)
         })
     }
 

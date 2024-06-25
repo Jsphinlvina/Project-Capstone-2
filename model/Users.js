@@ -35,7 +35,7 @@ class Users extends Model {
                        WHERE id = ?`
         this.db.query(query, [id], (err, result) => {
             if (err) return callback(err, null)
-            callback(result[0])
+            callback(null,result[0])
         })
     }
 }

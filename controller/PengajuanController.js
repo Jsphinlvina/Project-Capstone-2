@@ -4,7 +4,7 @@ const Periode = require("../model/Periode");
 const JenisBeasiswa = require("../model/JenisBeasiswa");
 
 const formatDateIndex = (date) => {
-    const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+    const options = {weekday: 'short', day: 'numeric', month: 'short', year: 'numeric'};
     return new Date(date).toLocaleDateString('en-US', options);
 };
 
@@ -66,27 +66,18 @@ const index = (req, res) => {
 const pengajuanBeasiswa = (req, res) => {
     const id = req.params.id
     new Status().edit(id, (status) => {
-        status.tanggal_mulai = formatDate(status.tanggal_mulai);
-        status.tanggal_akhir = formatDate(status.tanggal_akhir);
-
-        new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenisBeasiswas)=>{
+        new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenisBeasiswas) => {
             status.jenis_beasiswas = jenisBeasiswas
 
-            new Status().periode(status.periode_id, (err, periode)=>{
+            new Status().periode(status.periode_id, (err, periode) => {
                 status.periode = periode
 
-                new Periode().all((periodes) => {
-                    new JenisBeasiswa().all((jenisBeasiswas) => {
-                        res.render('pengajuan/pengajuanBeasiswa', {
-                            status: status,
-                            periodes: periodes,
-                            jenisBeasiswas: jenisBeasiswas
-                        })
-                    })
+                res.render('pengajuan/pengajuan', {
+                    status: status,
                 })
             })
         })
     })
-};
+}
 
 module.exports = {index, pengajuanBeasiswa}

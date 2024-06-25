@@ -69,16 +69,12 @@ block content
                                     label.col-sm-4.col-form-label(for='beasiswa') Nama Beasiswa :
                                     div.col-sm-8
                                         select#beasiswa.form-control(name='beasiswa' required)
-                                            option(value='') Pilih Nama Beasiswa
-                                            option(value='Beasiswa 1') Beasiswa 1
-                                            option(value='Beasiswa 2') Beasiswa 2
+                                            option(value=`${status.jenis_beasiswa_id}` selected='') #{status.jenis_beasiswas.name}
                                 div.row.mb-3
                                     label.col-sm-4.col-form-label(for='periode') Periode Beasiswa :
                                     div.col-sm-8
                                         select#periode.form-control(name='periode' required)
-                                            option(value='') Pilih Periode Beasiswa
-                                            option(value='Ganjil 2024/2025') Ganjil 2024/2025
-                                            option(value='Genap 2024/2025') Genap 2024/2025
+                                            option(value=`${status.periode_id}` selected='') #{status.periode.name}
                                 div.d-flex.justify-content-lg-end
                                     button.btn.btn-primary(type='button' onclick='validateStep1()') Selanjutnya
 

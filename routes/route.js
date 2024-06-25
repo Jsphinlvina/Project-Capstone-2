@@ -109,8 +109,8 @@ router.get('/status/create', checkRole(['2', '3']), statusController.create)
 router.get('/status', checkRole(['2', '3']), statusController.index)
 
 // Pengajuan
-router.get('/pengajuan', checkRole(['2', '3']), pengajuanController.index)
-router.get('/pengajuan/pengajuanBeasiswa', checkRole(['2', '3']), pengajuanController.pengajuanBeasiswa)
+router.get('/pengajuan', checkRole(['4']), pengajuanController.index)
+router.get('/pengajuan/pengajuanBeasiswa/:id', checkRole(['4']), pengajuanController.pengajuanBeasiswa)
 
 router.get('/login', loginController.login);
 router.post('/login', loginController.authenticate);
