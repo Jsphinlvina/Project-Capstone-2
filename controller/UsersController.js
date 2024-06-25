@@ -3,6 +3,7 @@ const Users = require('../model/Users');
 const Roles = require("../model/Roles");
 const ProgramStudi = require('../model/ProgramStudi')
 
+
 const index = (req, res) => {
     new Users().all((err, users) => {
         let usersData = [];
@@ -42,7 +43,14 @@ const index = (req, res) => {
 }
 
 const create = (req, res) => {
-    res.render('users/create');
+    new Roles().all((roles) => {
+        new ProgramStudi().all((program_studi) => {
+            res.render('users/create', {
+                roles: roles,
+                program_studi: program_studi
+            })
+        })
+    })
 }
 
 const store = (req, res) => {
@@ -55,7 +63,7 @@ const store = (req, res) => {
             password: hashedPassword,
             status: req.body.status,
             role_id: req.body.role_id,
-            program_studi: req.body.program_studi
+            program_studi_id: req.body.program_studi_id
         }
 
         new Users().save(user, (result) => {
@@ -82,7 +90,7 @@ const update = (req, res) => {
             password: hashedPassword,
             status: req.body.status,
             role_id: req.body.role_id,
-            program_studi: req.body.program_studi
+            program_studi_id: req.body.program_studi_id
         }
 
         new Users().update(user, (err, result) => {

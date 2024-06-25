@@ -47,27 +47,26 @@ block content
                                     maxlength=8,
                                     placeholder="your password")
                         div.row.mb-3
-                            label.form-label.fw-semibold(for="name") Status
+                            label.form-label.fw-semibold(for="status") Status
                             div.col-sm-8
-                                select.form-select(aria-label='Default select example')
+                                select.form-select(aria-label='Default select example' name='status' id='status')
                                     option(selected='') Select status
-                                    option(value='1') Active
-                                    option(value='0') Non-active
+                                    option(value=1) Active
+                                    option(value=0) Non-active
                         div.row.mb-3
-                            label.form-label.fw-semibold(for="name") Program Studi
+                            label.form-label.fw-semibold(for="program_studi_id") Program Studi
                             div.col-sm-8
-                                select.form-select(aria-label='Default select example')
-                                    option(selected='') Select status
-                                    option(value='teknik_informatika') Teknik Informatika
+                                select.form-select(aria-label='Default select example' name='program_studi_id' id='program_studi_id')
+                                    option(selected='') Select program studi
+                                    each programStudi in program_studi
+                                        option(value=`${programStudi.id}`) #{programStudi.name}
                         div.row.mb-3
-                            label.form-label.fw-semibold(for="name") Role
+                            label.form-label.fw-semibold(for="role_id") Role
                             div.col-sm-8
-                                select.form-select(aria-label='Default select example')
-                                    option(selected='') Select status
-                                    option(value='0') Admin
-                                    option(value='1') Mahasiswa
-                                    option(value='2') Fakultas
-                                    option(value='3') Program Studi
+                                select.form-select(aria-label='Default select example' name='role_id' id='role_id')
+                                    option(selected='') Select role
+                                    each role in roles
+                                        option(value=`${role.id}`) #{role.name}
 
                         div.d-flex
                             button.btn.btn-success.ms-auto(type="submit") Create User
