@@ -104,9 +104,9 @@ function checkRole(roles) {
             return next();
         } else {
             req.flash('error', 'Role tidak valid atau akses tidak diizinkan');
-            res.redirect('/login');
+            res.redirect('/login')
         }
-    };
+    }
 }
 
 // Protected routes, accessible only after authentication
