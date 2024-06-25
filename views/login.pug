@@ -18,9 +18,10 @@ html(lang="en")
                     label(for="password") Password
                     input(type="password" id="password" name="password" required)
                 .form-group
-                    label(for="role") Login sebagai
-                    select(name="role" id="role" class="form-control" required)
-                        option(value="" disabled selected) -- Pilih Peran --
+                    label(for="role") Login Sebagai
+                    select(name="role" id="role" required)
+                        option(value="administrator") Administrator
                         option(value="mahasiswa") Mahasiswa
-                        option(value="staff") Staff
+                        option(value="fakultas") Fakultas
+                        option(value="program_studi") Program Studi
                 button(type="submit" class="btn") Login

@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-
 const router = express.Router()
+const passport = require('passport');
+
 router.use(express.static('public'))
 
 router.get('/login', (req, res) => {
@@ -10,6 +11,7 @@ router.get('/login', (req, res) => {
 })
 
 // Controller
+const loginController = require('../controller/loginController')
 const roleController = require('../controller/RoleController')
 const userController = require('../controller/UsersController')
 const fakultasController = require('../controller/FakultasController')
@@ -83,90 +85,94 @@ router.post('/status/store', statusController.store)
 router.get('/status/create', statusController.create)
 router.get('/status', statusController.index)
 
-
-
-
-// router.get('/dashboard', function(req, res) {
-//     if (req.user.role === 'administrator') {
-//         res.render('administrator/dashboard');
-//     } else if (req.user.role === 'fakultas') {
-//         res.render('fakultas/dashboard');
-//     } else if (req.user.role === 'program_studi') {
-//         res.render('programStudi/dashboard');
-//     } else if (req.user.role === 'mahasiswa') {
-//         res.render('mahasiswa/dashboard');
-//     } else {
-//         res.redirect('/login');
-//     }
-// })
-
-router.get('/home', (req, res) => {
-    res.render('administrator/dashboard')
-})
-
-router.get('/home1', (req, res) => {
-    res.render('fakultas/dashboard')
-})
-
-router.get('/home2', (req, res) => {
-    res.render('programStudi/dashboard')
-})
-
-router.get('/home3', (req, res) => {
-    res.render('mahasiswa/dashboard')
-})
-
-router.get('/applicants', (req, res) => {
-    res.render('programStudi/applicants')
-})
-
-router.get('/management', (req, res) => {
-    res.render('fakultas/management')
-})
-
-router.get('/applicants01', (req, res) => {
-    res.render('fakultas/applicants')
-})
-
-router.get('/pengajuan', (req, res) => {
-    res.render('pengajuan/index')
-})
-
-router.get('/riwayat', (req, res) => {
-    res.render('pengajuan/riwayat')
-})
-
 router.get('/', (req, res) => {
-    res.render('administrator/dashboard')
+    res.render('login')
 })
 
-router.get('/programStudi', (req, res) => {
-    res.render('programStudi/index')
+// Middleware untuk memeriksa otentikasi
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
+// Middleware untuk memeriksa peran
+function checkRole(roles) {
+    return (req, res, next) => {
+        if (req.user && roles.includes(req.user.role_id)) {
+            return next();
+        } else {
+            req.flash('error', 'Role tidak valid atau akses tidak diizinkan');
+            res.redirect('/login');
+        }
+    };
+}
+
+// Halaman login
+router.get('/login', loginController.login);
+router.post('/login', loginController.authenticate);
+router.get('/logout', loginController.logout);
+
+router.use((req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
 })
 
-router.get('/userManagement', (req, res) => {
-    res.render('users/index')
-})
+// Route yang diakses hanya setelah login
+router.use(isAuthenticated);
 
-router.get('/roleManagement', (req, res) => {
-    res.render('role/index')
-})
+// Role-based routes
+router.get('/administrator/dashboard', checkRole(['1']), (req, res) => {
+    res.render('administrator/dashboard');
+});
+router.get('/jenisbeasiswa/index', checkRole(['1']), (req, res) => {
+    res.render('jenisBeasiswa/index');
+});
+router.get('/programStudi/index', checkRole(['1']), (req, res) => {
+    res.render('programStudi/index');
+});
+router.get('/fakultas/index', checkRole(['1']), (req, res) => {
+    res.render('fakultas/index');
+});
+router.get('/users/index', checkRole(['1']), (req, res) => {
+    res.render('users/index');
+});
 
-router.get('/mahasiswa', (req, res) => {
-    res.render('mahasiswa/index')
-})
+router.get('/mahasiswa/dashboard', checkRole(['4']), (req, res) => {
+    res.render('mahasiswa/dashboard');
+});
+router.get('/pengajuan/index', checkRole(['4']), (req, res) => {
+    res.render('pengajuan/index');
+});
+router.get('/pengajuan/riwayat', checkRole(['4']), (req, res) => {
+    res.render('pengajuan/riwayat');
+});
 
-router.get('/approvalFakultas', (req, res) => {
-    res.render('fakultas/approval')
-})
+router.get('/fakultas/dashboard', checkRole(['2']), (req, res) => {
+    res.render('fakultas/dashboard');
+});
+router.get('/fakultas/management', checkRole(['2']), (req, res) => {
+    res.render('fakultas/management');
+});
+router.get('/fakultas/applicants', checkRole(['2']), (req, res) => {
+    res.render('fakultas/applicants');
+});
+router.get('/fakultas/approval', checkRole(['2']), (req, res) => {
+    res.render('fakultas/approval');
+});
 
-router.get('/approvalProgramStudi', (req, res) => {
-    res.render('programStudi/approval')
-})
-
-router.get('/createPS', (req, res) => {
-    res.render('mahasiswa/create')
-})
+router.get('/programStudi/dashboard', checkRole(['3']), (req, res) => {
+    res.render('programStudi/dashboard');
+});
+router.get('/programStudi/applicants', checkRole(['3']), (req, res) => {
+    res.render('programStudi/applicants');
+});
+router.get('/programStudi/approval', checkRole(['3']), (req, res) => {
+    res.render('programStudi/approval');
+});
 
 
 module.exports = router
