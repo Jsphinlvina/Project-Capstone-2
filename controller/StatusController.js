@@ -2,6 +2,11 @@ const Status = require('../model/Status')
 const Periode = require('../model/Periode')
 const JenisBeasiswa = require('../model/JenisBeasiswa')
 
+const formatDateIndex = (date) => {
+    const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+};
+
 const index = (req, res) => {
     new Status().all((statuss) => {
         let statusData = []
@@ -16,11 +21,15 @@ const index = (req, res) => {
         }
 
         statuss.forEach(status => {
-            new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenis_beasiswa) => {
-                status.jenis_beasiswa = jenis_beasiswa
+            new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenis_beasiswas) => {
+                status.jenis_beasiswas = jenis_beasiswas
 
                 new Status().periode(status.periode_id, (err, periode) => {
                     status.periode = periode
+
+
+                    status.tanggal_mulai = formatDateIndex(status.tanggal_mulai);
+                    status.tanggal_akhir = formatDateIndex(status.tanggal_akhir);
 
                     statusData.push(status)
                     processed++
@@ -44,11 +53,11 @@ const index = (req, res) => {
 }
 
 const create = (req, res) => {
-    new Periode().all((periode) => {
-        new JenisBeasiswa().all((jenisBeasiswa) => {
+    new Periode().all((periodes) => {
+        new JenisBeasiswa().all((jenisBeasiswas) => {
             res.render('status/create', {
-                periode: periode,
-                jenisBeasiswa: jenisBeasiswa
+                periodes: periodes,
+                jenisBeasiswas: jenisBeasiswas
             })
         })
     })
@@ -64,34 +73,53 @@ const store = (req, res) => {
         status: req.body.status
     }
 
-    new Status().findByJenisBeasiswaAndPeriode(status.jenis_beasiswa_id, status.periode_id, (existingStatus) => {
-        if (existingStatus) {
-            req.session.error = `Status untuk jenis beasiswa ${status.jenis_beasiswa_id} dan periode ${status.periode_id} sudah ada.`;
+    new Status().findID(status.id, (existingID) => {
+        if (existingID) {
+            req.session.error = `Pengaturan Periode ID ${status.id} sudah ada`;
             return res.redirect('/status');
         }
 
-        new Status().save(status, (result) => {
-            req.session.success = `Status ${status.name} berhasil ditambahkan`;
-            res.redirect('/status');
+        new Status().findByJenisBeasiswaAndPeriode(status.jenis_beasiswa_id, status.periode_id, (err, existingStatus) => {
+            if (existingStatus) {
+                req.session.error = `Pengaturan Periode untuk jenis beasiswa ${status.jenis_beasiswa_id} dan periode ${status.periode_id} sudah ada.`;
+                return res.redirect('/status');
+            }
+
+            new Status().save(status, (result) => {
+                req.session.success = `Status ${status.id} berhasil ditambahkan`;
+                res.redirect('/status');
+            })
         })
     })
 }
 
+
+const formatDate = (date) => {
+    const d = new Date(date);
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+    const day = ('0' + d.getDate()).slice(-2);
+    return `${d.getFullYear()}-${month}-${day}`;
+};
+
 const edit = (req, res) => {
     const id = req.params.id
     new Status().edit(id, (status) => {
+        status.tanggal_mulai = formatDate(status.tanggal_mulai);
+        status.tanggal_akhir = formatDate(status.tanggal_akhir);
 
-        new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenisBeasiswa)=>{
-            status.jenis_beasiswa = jenisBeasiswa
+        new Status().jenis_beasiswa(status.jenis_beasiswa_id, (err, jenisBeasiswas)=>{
+            status.jenis_beasiswas = jenisBeasiswas
 
             new Status().periode(status.periode_id, (err, periode)=>{
                 status.periode = periode
 
-                new Periode().all((periode) => {
-                    new JenisBeasiswa().all((jenisBeasiswa) => {
-                        res.render('status/create', {
-                            periode: periode,
-                            jenisBeasiswa: jenisBeasiswa
+                new Periode().all((periodes) => {
+                    new JenisBeasiswa().all((jenisBeasiswas) => {
+                        console.log(status)
+                        res.render('status/edit', {
+                            status: status,
+                            periodes: periodes,
+                            jenisBeasiswas: jenisBeasiswas
                         })
                     })
                 })
@@ -102,6 +130,7 @@ const edit = (req, res) => {
 
 const update = (req, res) => {
     const status = {
+        id: req.body.id,
         jenis_beasiswa_id: req.body.jenis_beasiswa_id,
         periode_id: req.body.periode_id,
         tanggal_mulai: req.body.tanggal_mulai,

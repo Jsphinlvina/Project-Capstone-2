@@ -5,25 +5,33 @@ block content
         div.container-fluid
             div.mb-3
                 div.d-flex.justify-content-between.mb-3
-                    h3.fw-bold.fs-4.mb-3 Jenis Beasiswa
+                    h3.fw-bold.fs-4.mb-3 Pengaturan Periode
                     a.btn.btn-success.px-4.pt-2(href='/status/create')
                         strong + Add
                 div.card.bg-light.shadow.border-0.rounded-3.mb-4
                     div.border-bottom.ps-3.pt-3
-                        p.fw-semibold List of Jenis Beasiswa
+                        p.fw-semibold List of Periode Beasiswa
                     div.table-responsive.small.px-3
                         table.table.table-striped.table-sm.mt-1
                             thead
                                 tr
-                                    th(scope='col') Id
-                                    th(scope='col') Nama
+                                    th(scope='col') ID
+                                    th(scope='col') Jenis Beasiswa
+                                    th(scope='col') Periode
+                                    th(scope='col') Tanggal Mulai
+                                    th(scope='col') Tanggal Akhir
+                                    th(scope='col') Status
                                     th.text-center(scope='col') Edit
                                     th.text-center(scope='col') Delete
                             tbody
                                 each status in statuss
                                     tr
                                         td #{status.id}
-                                        td #{status.name}
+                                        td #{status.jenis_beasiswas.name}
+                                        td #{status.periode.name}
+                                        td #{status.tanggal_mulai}
+                                        td #{status.tanggal_akhir}
+                                        td #{status.status}
                                         td.text-center
                                             a.btn.btn-warning(href=`/status/edit/${status.id}`)
                                                 svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
@@ -40,7 +48,7 @@ block content
                 div.modal-dialog.modal-dialog-centered
                     div.modal-content
                         div.modal-header
-                            h1#deleteModalLabel.modal-title.fs-5 Delete Role
+                            h1#deleteModalLabel.modal-title.fs-5 Delete Status
                             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
                         div.modal-body
                             p.p-0.pb-1.m-0 Apakah anda akan menghapus status ini?
