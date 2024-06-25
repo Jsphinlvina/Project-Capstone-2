@@ -17,7 +17,6 @@ block content
                                 th(scope='col') Id
                                 th(scope='col') Nama
                                 th(scope='col') Email
-                                th(scope='col') Password
                                 th(scope='col') Status
                                 th(scope='col') Program Studi
                                 th(scope='col') Role
@@ -29,10 +28,9 @@ block content
                                     td #{user.id}
                                     td #{user.name}
                                     td #{user.email}
-                                    td #{user.password}
                                     td #{user.status}
-                                    td #{user.program_studi}
-                                    td #{user.role_id}
+                                    td #{user.program_studi.name}
+                                    td #{user.role.name}
                                     td.text-center
                                         a.btn.btn-warning(href=`users/edit/${user.id}`)
                                             svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')

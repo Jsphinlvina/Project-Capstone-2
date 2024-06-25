@@ -10,6 +10,7 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
+
 // Controller
 const loginController = require('../controller/loginController')
 const roleController = require('../controller/RoleController')
@@ -21,73 +22,87 @@ const jenisDokumenController = require('../controller/JenisDokumenController')
 const periodeController = require('../controller/PeriodeController')
 const statusController = require('../controller/StatusController')
 
+// Middleware untuk memeriksa peran
+function checkRole(roles) {
+    return (req, res, next) => {
+        if (req.user && roles.includes(req.user.role_id)) {
+            return next();
+        } else {
+            req.flash('error', 'Role tidak valid atau akses tidak diizinkan');
+            res.redirect('/login');
+        }
+    };
+}
+
 // Role
-router.get('/role/delete/:id', roleController.destroy)
-router.get('/role/edit/:id', roleController.edit)
-router.post('/role/update', roleController.update)
-router.post('/role/store', roleController.store)
-router.get('/role/create', roleController.create)
-router.get('/role', roleController.index)
+router.get('/role/delete/:id', checkRole(['1']), roleController.destroy)
+router.get('/role/edit/:id', checkRole(['1']), roleController.edit)
+router.post('/role/update', checkRole(['1']), roleController.update)
+router.post('/role/store', checkRole(['1']), roleController.store)
+router.get('/role/create', checkRole(['1']), roleController.create)
+router.get('/role', checkRole(['1']), roleController.index)
 
 // User
-router.get('/user/delete/:id', userController.destroy)
-router.get('/user/edit/:id', userController.edit)
-router.post('/user/update', userController.update)
-router.post('/user/store', userController.store)
-router.get('/user/create', userController.create)
-router.get('/user', userController.index)
+router.get('/users/delete/:id', checkRole(['1']), userController.destroy)
+router.get('/users/edit/:id', checkRole(['1']), userController.edit)
+router.post('/users/update', checkRole(['1']), userController.update)
+router.post('/users/store', checkRole(['1']), userController.store)
+router.get('/users/create', checkRole(['1']), userController.create)
+router.get('/users', checkRole(['1']), userController.index)
+
 
 // Fakultas
-router.get('/fakultas/delete/:id', fakultasController.destroy)
-router.get('/fakultas/edit/:id', fakultasController.edit)
-router.post('/fakultas/update', fakultasController.update)
-router.post('/fakultas/store', fakultasController.store)
-router.get('/fakultas/create', fakultasController.create)
-router.get('/fakultas', fakultasController.index)
+router.get('/fakultas/delete/:id', checkRole(['1']), fakultasController.destroy)
+router.get('/fakultas/edit/:id', checkRole(['1']), fakultasController.edit)
+router.post('/fakultas/update', checkRole(['1']), fakultasController.update)
+router.post('/fakultas/store', checkRole(['1']), fakultasController.store)
+router.get('/fakultas/create', checkRole(['1']), fakultasController.create)
+router.get('/fakultas', checkRole(['1']), fakultasController.index)
 
 // Program Studi
-router.get('/programStudi/delete/:id', programStudiController.destroy)
-router.get('/programStudi/edit/:id', programStudiController.edit)
-router.post('/programStudi/update', programStudiController.update)
-router.post('/programStudi/store', programStudiController.store)
-router.get('/programStudi/create', programStudiController.create)
-router.get('/programStudi', programStudiController.index)
+router.get('/programStudi/delete/:id', checkRole(['1']), programStudiController.destroy)
+router.get('/programStudi/edit/:id', checkRole(['1']), programStudiController.edit)
+router.post('/programStudi/update', checkRole(['1']), programStudiController.update)
+router.post('/programStudi/store', checkRole(['1']), programStudiController.store)
+router.get('/programStudi/create', checkRole(['1']), programStudiController.create)
+router.get('/programStudi', checkRole(['1']), programStudiController.index)
 
 // Jenis Beasiswa
-router.get('/jenisBeasiswa/delete/:id', jenisBeasiswaController.destroy)
-router.get('/jenisBeasiswa/edit/:id', jenisBeasiswaController.edit)
-router.post('/jenisBeasiswa/update', jenisBeasiswaController.update)
-router.post('/jenisBeasiswa/store', jenisBeasiswaController.store)
-router.get('/jenisBeasiswa/create', jenisBeasiswaController.create)
-router.get('/jenisBeasiswa', jenisBeasiswaController.index)
+router.get('/jenisBeasiswa/delete/:id', checkRole(['1']), jenisBeasiswaController.destroy)
+router.get('/jenisBeasiswa/edit/:id', checkRole(['1']), jenisBeasiswaController.edit)
+router.post('/jenisBeasiswa/update', checkRole(['1']), jenisBeasiswaController.update)
+router.post('/jenisBeasiswa/store', checkRole(['1']), jenisBeasiswaController.store)
+router.get('/jenisBeasiswa/create', checkRole(['1']), jenisBeasiswaController.create)
+router.get('/jenisBeasiswa', checkRole(['1']), jenisBeasiswaController.index)
 
 // Jenis Dokumen
-router.get('/jenisDokumen/delete/:id', jenisDokumenController.destroy)
-router.get('/jenisDokumen/edit/:id', jenisDokumenController.edit)
-router.post('/jenisDokumen/update', jenisDokumenController.update)
-router.post('/jenisDokumen/store', jenisDokumenController.store)
-router.get('/jenisDokumen/create', jenisDokumenController.create)
-router.get('/jenisDokumen', jenisDokumenController.index)
+router.get('/jenisDokumen/delete/:id', checkRole(['1']), jenisDokumenController.destroy)
+router.get('/jenisDokumen/edit/:id', checkRole(['1']), jenisDokumenController.edit)
+router.post('/jenisDokumen/update', checkRole(['1']), jenisDokumenController.update)
+router.post('/jenisDokumen/store', checkRole(['1']), jenisDokumenController.store)
+router.get('/jenisDokumen/create', checkRole(['1']), jenisDokumenController.create)
+router.get('/jenisDokumen', checkRole(['1']), jenisDokumenController.index)
 
 // Periode
-router.get('/periode/delete/:id', periodeController.destroy)
-router.get('/periode/edit/:id', periodeController.edit)
-router.post('/periode/update', periodeController.update)
-router.post('/periode/store', periodeController.store)
-router.get('/periode/create', periodeController.create)
-router.get('/periode', periodeController.index)
+router.get('/periode/delete/:id', checkRole(['1']), periodeController.destroy)
+router.get('/periode/edit/:id', checkRole(['1']), periodeController.edit)
+router.post('/periode/update', checkRole(['1']), periodeController.update)
+router.post('/periode/store', checkRole(['1']), periodeController.store)
+router.get('/periode/create', checkRole(['1']), periodeController.create)
+router.get('/periode', checkRole(['1']), periodeController.index)
 
 // Status
-router.get('/status/delete/:id', statusController.destroy)
-router.get('/status/edit/:id', statusController.edit)
-router.post('/status/update', statusController.update)
-router.post('/status/store', statusController.store)
-router.get('/status/create', statusController.create)
-router.get('/status', statusController.index)
+router.get('/status/delete/:id', checkRole(['2', '3']), statusController.destroy)
+router.get('/status/edit/:id', checkRole(['2', '3']), statusController.edit)
+router.post('/status/update', checkRole(['2', '3']), statusController.update)
+router.post('/status/store', checkRole(['2', '3']), statusController.store)
+router.get('/status/create', checkRole(['2', '3']), statusController.create)
+router.get('/status', checkRole(['2', '3']), statusController.index)
 
 router.get('/login', loginController.login);
 router.post('/login', loginController.authenticate);
 router.get('/logout', loginController.logout);
+
 
 // Middleware untuk memeriksa otentikasi
 function isAuthenticated(req, res, next) {
@@ -97,20 +112,9 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
 }
 
-// Middleware untuk memeriksa peran
-function checkRole(roles) {
-    return (req, res, next) => {
-        if (req.user && roles.includes(req.user.role_id)) {
-            return next();
-        } else {
-            req.flash('error', 'Role tidak valid atau akses tidak diizinkan');
-            res.redirect('/login')
-        }
-    }
-}
-
 // Protected routes, accessible only after authentication
 router.use(isAuthenticated);
+
 
 // Role-based routes
 router.get('/administrator/dashboard', checkRole(['1']), (req, res) => {

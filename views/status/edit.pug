@@ -23,7 +23,7 @@ block content
                             label.form-label.fw-semibold(for="jenis_beasiswa_id") Jenis Beasiswa
                             div.col-sm-8
                                 select.form-select(aria-label='Default select example' name='jenis_beasiswa_id', id='jenis_beasiswa_id')
-                                    option(value=`${status.jenis_beasiswas_id}` selected='') #{status.jenis_beasiswas.name}
+                                    option(value=`${status.jenis_beasiswa_id}` selected='') #{status.jenis_beasiswas.name}
                                     each jenisBeasiswa in jenisBeasiswas
                                         option(value=`${jenisBeasiswa.id}`) #{jenisBeasiswa.name}
                         div.row.mb-3

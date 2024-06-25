@@ -84,7 +84,7 @@ const store = (req, res) => {
                 req.session.error = `Pengaturan Periode untuk jenis beasiswa ${status.jenis_beasiswa_id} dan periode ${status.periode_id} sudah ada.`;
                 return res.redirect('/status');
             }
-
+            console.log('Data yang diterima untuk update:', status);
             new Status().save(status, (result) => {
                 req.session.success = `Status ${status.id} berhasil ditambahkan`;
                 res.redirect('/status');
@@ -115,7 +115,6 @@ const edit = (req, res) => {
 
                 new Periode().all((periodes) => {
                     new JenisBeasiswa().all((jenisBeasiswas) => {
-                        console.log(status)
                         res.render('status/edit', {
                             status: status,
                             periodes: periodes,
